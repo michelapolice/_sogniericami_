@@ -34,18 +34,24 @@
         button, input, select, textarea { font: inherit; }
 
         .hero {
-            min-height: 92vh;
+            min-height: clamp(520px, 85vh, 900px);
             display: grid;
             align-items: center;
             background:
                 radial-gradient(circle at 20% 20%, rgba(246, 167, 184, 0.22), transparent 34%),
                 linear-gradient(135deg, #fffaf5, #eef7f3);
             color: var(--inchiostro);
-            padding: 28px clamp(18px, 5vw, 72px);
+            padding: 28px 18px;
         }
 
-        .hero-content { width: min(620px, 100%); }
 
+.section-inner,
+.hero-content {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+}
+
+      
         .hero-logo {
             display: block;
             width: min(620px, 88vw);
@@ -54,6 +60,16 @@
             margin-bottom: 10px;
             border-radius: 8px;
         }
+
+	@media (max-width: 620px) {
+
+    		.hero-content,
+    		.section-inner {
+        		width: 100%;
+        		max-width: 100%;
+    		}
+
+	}
 
         .logo-fallback {
             display: none;
@@ -402,6 +418,24 @@
             box-shadow: var(--ombra);
         }
 
+.carrello-mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: white;
+    overflow: auto;
+    transform: translateY(100%);
+    transition: 0.3s ease;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.carrello-mobile.open {
+    transform: translateY(0);
+}
+
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -593,7 +627,7 @@
             .panel { padding: 18px; }
             .models-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
             .carrello-desktop { display: none; }
-            body { padding-bottom: 90px; }
+            body { padding-bottom: 70px; }
 
             .section-mobile {
                 display: block;
@@ -605,8 +639,8 @@
             }
         }
 
-        @media (max-width: 620px) {
-            .hero { min-height: 86vh; align-items: end; padding-bottom: 42px; }
+       	@media (max-width: 620px) {
+    	    .hero {min-height: auto; padding: 60px 16px 40px;}
             .section { padding: 42px 16px; }
             .section-title { display: block; }
             .section-title p { margin-top: 10px; }
@@ -832,14 +866,29 @@
                         <button class="btn instagram" type="button" onclick="apriInstagram()">Contattaci su Instagram</button>
                     </div>
 
-                    <h3 class="section-mobile">🛒 Carrello</h3>
-
                     <div class="panel carrello-desktop">
                         <h3>🛒 Carrello</h3>
                         <div id="cart-items"></div>
                         <div style="margin-top:12px; font-weight:600">Totale carrello: <span id="cart-total">€0</span></div>
                         <button class="btn" style="background:#352d2d; color:white; margin-top:12px;" type="button" onclick="apriCheckout()">✨ Procedi al checkout</button>
                     </div>
+
+<div id="carrello-mobile" class="carrello-mobile">
+    <h3>🛒 Carrello</h3>
+    <div id="cart-items-mobile"></div>
+
+    <div style="margin-top:12px; font-weight:600">
+        Totale carrello: <span id="cart-total-mobile">€0</span>
+    </div>
+
+    <button class="btn" style="background:#352d2d; color:white; margin-top:12px;" type="button" onclick="apriCheckout()">
+        ✨ Procedi al checkout
+    </button>
+
+    <button class="btn" style="margin-top:10px;" onclick="document.getElementById('carrello-mobile').classList.remove('open')">
+        Chiudi
+    </button>
+</div>
 
                     <p class="note">Dopo l'invio riceverai conferma disponibilità, tempi di realizzazione e modalità di pagamento tramite IBAN o link esterno.</p>
                 </section>
@@ -854,10 +903,14 @@
         Tempi di realizzazione e consegna verranno confermati prima del pagamento.
     </footer>
 
-    <div class="mobile-summary">
-        <div id="mobile-total">€0</div>
-        <button id="mobile-cart-btn" class="btn btn-primary" type="button" onclick="gestisciCarrello()">➕ Aggiungi</button>
-    </div>
+<div class="mobile-summary">
+    <div id="mobile-total">€0</div>
+
+    <button class="btn" type="button"
+        onclick="document.getElementById('carrello-mobile').classList.add('open')">
+        🛒 Carrello
+    </button>
+</div>
 
     <script>
         let editingIndex = null;
@@ -1231,7 +1284,7 @@
             } else {
                 carrello.push(config);
             }
-            renderCarrello();
+            aggiornaUICarrello();
             resetForm();
         }
 
@@ -1253,9 +1306,12 @@
         function renderCarrello() {
             const box = document.getElementById("cart-items");
             const totalBox = document.getElementById("cart-total");
-            const mobileTotal = document.getElementById("mobile-total");
+
+	    const boxMobile = document.getElementById("cart-items-mobile");
+	    const totalMobile = document.getElementById("cart-total-mobile");
 
             box.innerHTML = "";
+	    if (boxMobile) boxMobile.innerHTML = "";
             let subtotale = 0;
 
             carrello.forEach((item, i) => {
@@ -1277,9 +1333,34 @@
                 box.appendChild(div);
             });
 
+	    if (boxMobile) {
+    		boxMobile.innerHTML = "";
+
+    		carrello.forEach((item, i) => {
+        		const div = document.createElement("div");
+        		div.style.cssText = "border:1px solid #ddd;padding:10px;margin-bottom:8px;border-radius:8px";
+
+        		div.innerHTML = `
+            			<h4 style="margin:0 0 8px">${item.prodotto}</h4>
+            			<div>📏 ${item.taglia || "-"}</div>
+            			<div>🪡 ${item.nome || "-"}</div>
+            			${item.federa ? "<div>🛏️ Federa con iniziali</div>" : ""}
+            			${item.colletto ? `<div>👔 ${testoCollettoBreve(item.colletto)}</div>` : ""}
+            			<div>🎨 ${item.colore}</div>
+            			<div><b>${euro(item.prezzo)}</b></div>
+            			<div style="margin-top:8px;display:flex;gap:8px">
+                			<button type="button" onclick="iniziaModifica(${i})">✏️ Modifica</button>
+                			<button type="button" class="btn" style="background:#f6a7b8;color:white" onclick="rimuoviItem(${i})">🗑</button>
+            			</div>
+        		`;
+
+        		boxMobile.appendChild(div);
+    		});
+	    }
+
             const totale = subtotale + (carrello.length ? CONFIG.spedizione : 0);
             totalBox.textContent = euro(totale);
-            if (mobileTotal) mobileTotal.textContent = euro(totale);
+            if (totalMobile) totalMobile.textContent = euro(totale);
 
             if (carrello.length > 0) {
                 const riepilogo = document.createElement("div");
@@ -1320,6 +1401,9 @@
             aggiornaTutto();
             aggiornaBottoneEditing();
             document.getElementById("configura").scrollIntoView({ behavior: "smooth" });
+
+	    document.getElementById("carrello-mobile")?.classList.remove("open");
+	    document.getElementById("configura").scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function rimuoviItem(index) {
@@ -1330,7 +1414,7 @@
             } else if (editingIndex !== null && index < editingIndex) {
                 editingIndex--;
             }
-            renderCarrello();
+            aggiornaUICarrello();
         }
 
         function aggiornaTutto() {
@@ -1339,6 +1423,17 @@
             aggiornaVisibilitaTaglia();
             aggiornaVisibilitaColletto();
         }
+
+function aggiornaUICarrello() {
+    renderCarrello();
+
+    const totale = carrello.reduce((s, i) => s + i.prezzo, 0) +
+        (carrello.length ? CONFIG.spedizione : 0);
+
+    document.getElementById("cart-total").textContent = euro(totale);
+    document.getElementById("cart-total-mobile").textContent = euro(totale);
+    document.getElementById("mobile-total").textContent = euro(totale);
+}
 
         function apriCheckout() {
             if (carrello.length === 0) {
@@ -1462,12 +1557,17 @@ Vorrei confermare dettagli, tempi e pagamento tramite IBAN o link.`;
             carrello = [];
         }
 
+if (!localStorage.getItem("carrello_version")) {
+    localStorage.removeItem("carrello");
+    localStorage.setItem("carrello_version", "1");
+}
+
         caricaLogo();
         aggiornaEtichettePrezzi();
         popolaProdotti();
         popolaModelli();
         creaPaletteColori();
-        renderCarrello();
+        aggiornaUICarrello();
         aggiornaTutto();
     </script>
 </body>
