@@ -20,9 +20,7 @@
             --ombra: 0 18px 45px rgba(92, 68, 54, 0.12);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -31,16 +29,9 @@
             background: var(--carta);
         }
 
-        img {
-            max-width: 100%;
-        }
+        img { max-width: 100%; }
 
-        button,
-        input,
-        select,
-        textarea {
-            font: inherit;
-        }
+        button, input, select, textarea { font: inherit; }
 
         .hero {
             min-height: 92vh;
@@ -53,9 +44,7 @@
             padding: 28px clamp(18px, 5vw, 72px);
         }
 
-        .hero-content {
-            width: min(620px, 100%);
-        }
+        .hero-content { width: min(620px, 100%); }
 
         .hero-logo {
             display: block;
@@ -64,9 +53,6 @@
             object-fit: contain;
             margin-bottom: 10px;
             border-radius: 8px;
-            background: transparent;
-            border: 0;
-            box-shadow: none;
         }
 
         .logo-fallback {
@@ -90,13 +76,6 @@
             line-height: 0.95;
         }
 
-        .brand {
-            font-family: "Great Vibes", "Pacifico", cursive;
-            font-size: clamp(42px, 8vw, 82px);
-            line-height: 1.05;
-            margin: 0 0 18px;
-        }
-
         .hero p {
             font-size: clamp(18px, 2.4vw, 24px);
             line-height: 1.45;
@@ -104,11 +83,7 @@
             max-width: 560px;
         }
 
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
         .btn {
             border: 0;
@@ -129,21 +104,15 @@
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
         }
 
-        .btn-primary {
-            background: var(--inchiostro);
-            color: white;
-        }
+        .btn-primary { background: var(--inchiostro); color: white; }
 
         .btn-secondary {
             background: white;
             color: var(--inchiostro);
             border: 1px solid var(--bordo);
-            backdrop-filter: blur(6px);
         }
 
-        .section {
-            padding: 56px clamp(18px, 5vw, 72px);
-        }
+        .section { padding: 56px clamp(18px, 5vw, 72px); }
 
         .section-inner {
             width: min(1120px, 100%);
@@ -164,8 +133,7 @@
             margin: 0;
         }
 
-        .section-title p,
-        .intro-text {
+        .section-title p, .intro-text {
             color: var(--testo);
             line-height: 1.55;
             margin: 0;
@@ -177,14 +145,6 @@
             grid-template-columns: 1.05fr 0.95fr;
             gap: 28px;
             align-items: center;
-        }
-
-        .intro-panel {
-            background: white;
-            border: 1px solid var(--bordo);
-            border-radius: 8px;
-            padding: 28px;
-            box-shadow: var(--ombra);
         }
 
         .pill-row {
@@ -199,7 +159,6 @@
             border-radius: 999px;
             padding: 9px 13px;
             background: var(--rosa-soft);
-            color: var(--inchiostro);
             font-size: 14px;
         }
 
@@ -217,16 +176,8 @@
             border: 1px solid #dcece5;
         }
 
-        .step strong {
-            display: block;
-            font-size: 19px;
-            margin-bottom: 8px;
-        }
-
-        .step span {
-            color: var(--testo);
-            line-height: 1.45;
-        }
+        .step strong { display: block; font-size: 19px; margin-bottom: 8px; }
+        .step span { color: var(--testo); line-height: 1.45; }
 
         .models-grid {
             display: grid;
@@ -264,6 +215,27 @@
             color: var(--testo);
         }
 
+        .mobile-summary {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border-top: 1px solid #eee;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 999;
+        }
+
+        .mobile-summary button { flex: 1; height: 48px; }
+
+        #mobile-total { font-weight: 600; font-size: 18px; min-width: 60px; }
+
         .configurator-band {
             background: #ffffff;
             border-top: 1px solid var(--bordo);
@@ -277,10 +249,7 @@
             align-items: start;
         }
 
-        .preview-wrap {
-            position: sticky;
-            top: 20px;
-        }
+        .preview-wrap { position: sticky; top: 20px; }
 
         .preview-box {
             position: relative;
@@ -314,7 +283,7 @@
             top: 46%;
             transform: translate(-50%, -50%);
             width: 86%;
-            color: #6ba9c8;
+            color: #f6a7b8;
             font-family: "Pacifico", cursive;
             font-size: clamp(24px, 5vw, 38px);
             text-align: center;
@@ -322,16 +291,6 @@
             pointer-events: none;
             text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.88);
             line-height: 1.15;
-        }
-
-        #disegno-anteprima {
-            position: absolute;
-            left: 50%;
-            top: 35%;
-            transform: translate(-50%, -50%);
-            font-size: 34px;
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.88);
-            pointer-events: none;
         }
 
         .price-box {
@@ -373,13 +332,8 @@
             gap: 16px;
         }
 
-        .field {
-            text-align: left;
-        }
-
-        .field.full {
-            grid-column: 1 / -1;
-        }
+        .field { text-align: left; }
+        .field.full { grid-column: 1 / -1; }
 
         label {
             display: block;
@@ -389,9 +343,7 @@
             margin-bottom: 7px;
         }
 
-        select,
-        input,
-        textarea {
+        select, input, textarea {
             width: 100%;
             border: 1px solid var(--bordo);
             border-radius: 8px;
@@ -401,14 +353,9 @@
             outline: 0;
         }
 
-        textarea {
-            min-height: 92px;
-            resize: vertical;
-        }
+        textarea { min-height: 92px; resize: vertical; }
 
-        select:focus,
-        input:focus,
-        textarea:focus {
+        select:focus, input:focus, textarea:focus {
             border-color: var(--rosa);
             box-shadow: 0 0 0 3px rgba(246, 167, 184, 0.18);
         }
@@ -428,10 +375,7 @@
             min-height: 74px;
         }
 
-        .check-option input {
-            width: auto;
-            margin-right: 7px;
-        }
+        .check-option input { width: auto; margin-right: 7px; }
 
         .check-option span {
             display: block;
@@ -441,68 +385,52 @@
             line-height: 1.35;
         }
 
-	.color-picker {
-    		display: grid;
-    		grid-template-columns: repeat(6, 1fr);
-    		gap: 10px;
-	}
+        .color-picker {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
 
-	.color-option {
-    		display: flex;
-    		flex-direction: column;
-    		align-items: center;
-    		gap: 6px;
-    		cursor: pointer;
-    		padding: 8px;
-    		border-radius: 10px;
-    		transition: 0.2s ease;
-    		border: 1px solid transparent;
-	}
+        .color-picker::-webkit-scrollbar { display: none; }
 
-	.color-option:hover {
-    		transform: translateY(-2px);
-	}
-
-	.color-swatch {
-    		width: 34px;
-    		height: 34px;
-    		border-radius: 50%;
-    		box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-    		border: 2px solid white;
-	}
-
-	.color-option span {
-    		font-size: 11px;
-    		color: #555;
-    		text-align: center;
-	}
-
-	.color-option.selected {
-    		border: 1px solid #352d2d;
-    		background: #fff;
-    		box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-	}
-
-        .color-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+        .color-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 10px;
+            transition: 0.2s ease;
+            border: 1px solid transparent;
+            flex-shrink: 0;
         }
 
-        .color-btn.selected {
-            outline: 3px solid var(--inchiostro);
-            outline-offset: 2px;
+        .color-option:hover { transform: translateY(-2px); }
+
+        .color-swatch {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            border: 2px solid white;
         }
 
-	.color-option.selected::after {
-    		content: "✔";
-    		font-size: 12px;
-    		color: #352d2d;
-    		margin-top: 2px;
-	}
+        .color-option span { font-size: 11px; color: #555; text-align: center; }
+
+        .color-option.selected {
+            border: 1px solid #352d2d;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .color-option.selected::after {
+            content: "✔";
+            font-size: 12px;
+            color: #352d2d;
+            margin-top: 2px;
+        }
 
         .upload-box {
             border: 1px dashed #d9c9bd;
@@ -511,11 +439,7 @@
             background: #fffdfb;
         }
 
-        .upload-box input {
-            border: 0;
-            padding: 0;
-            background: transparent;
-        }
+        .upload-box input { border: 0; padding: 0; background: transparent; }
 
         .upload-help {
             margin: 10px 0 0;
@@ -562,15 +486,10 @@
             margin-top: 18px;
         }
 
-        .whatsapp {
-            background: #25d366;
-            color: white;
-        }
+        #main-cart-btn { background: #8bb8a8; color: white; grid-column: 1 / -1; }
 
-        .instagram {
-            background: #352d2d;
-            color: white;
-        }
+        .whatsapp { background: #25d366; color: white; }
+        .instagram { background: #352d2d; color: white; }
 
         .note {
             margin: 14px 0 0;
@@ -586,54 +505,38 @@
             background: var(--rosa-soft);
         }
 
+        .section-mobile { display: none; }
+
+        @media (min-width: 921px) {
+            .mobile-summary { display: none; }
+        }
+
         @media (max-width: 920px) {
-            .intro-grid,
-            .configurator {
-                grid-template-columns: 1fr;
-            }
+            .intro-grid, .configurator { grid-template-columns: 1fr; }
+            .preview-wrap { position: static; order: -1; }
+            .panel { padding: 18px; }
+            .models-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .carrello-desktop { display: none; }
+            body { padding-bottom: 90px; }
 
-            .preview-wrap {
-                position: static;
-            }
-
-            .models-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+            .section-mobile {
+                display: block;
+                grid-column: 1 / -1;
+                font-size: 20px;
+                margin: 25px 0 15px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
             }
         }
 
         @media (max-width: 620px) {
-            .hero {
-                min-height: 86vh;
-                align-items: end;
-                padding-bottom: 42px;
-            }
-
-            .section {
-                padding: 42px 16px;
-            }
-
-            .section-title {
-                display: block;
-            }
-
-            .section-title p {
-                margin-top: 10px;
-            }
-
-            .steps,
-            .form-grid,
-            .checks,
-            .order-actions {
-                grid-template-columns: 1fr;
-            }
-
-            .models-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .reference-preview {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .hero { min-height: 86vh; align-items: end; padding-bottom: 42px; }
+            .section { padding: 42px 16px; }
+            .section-title { display: block; }
+            .section-title p { margin-top: 10px; }
+            .steps, .form-grid, .checks, .order-actions { grid-template-columns: 1fr; }
+            .models-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .reference-preview { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -675,7 +578,6 @@
             <div class="section-inner">
                 <div class="section-title">
                     <h2>Modelli disponibili</h2>
-    
                 </div>
                 <div class="models-grid" id="models-grid"></div>
             </div>
@@ -685,16 +587,15 @@
             <div class="section-inner configurator">
                 <aside class="preview-wrap">
                     <div class="preview-box">
-                        <img id="prodotto-visualizzato" src="body-rosa.jpg" alt="Anteprima prodotto personalizzato">
+                        <img id="prodotto-visualizzato" src="body-lungo-bianco.jpg" alt="Anteprima prodotto personalizzato">
                         <div class="placeholder-preview" id="placeholder-preview">Caricheremo l'anteprima finale dopo aver ricevuto foto o dettagli della richiesta.</div>
-                        <div id="disegno-anteprima">♡</div>
                         <div id="testo-anteprima">Nome</div>
                     </div>
                     <div class="price-box" aria-live="polite">
-                        <div class="price-row"><span>Prodotto base</span><strong id="prezzo-base">€18</strong></div>
-                        <div class="price-row"><span>Personalizzazioni</span><strong id="prezzo-extra">€5</strong></div>
+                        <div class="price-row"><span>Prodotto base</span><strong id="prezzo-base">€0</strong></div>
+                        <div class="price-row"><span>Personalizzazioni</span><strong id="prezzo-extra">€0</strong></div>
                         <div class="price-row"><span>Spedizione</span><strong id="spedizione">€9</strong></div>
-                        <div class="price-row total"><span>Totale stimato</span><strong id="prezzo-totale">€23</strong></div>
+                        <div class="price-row total"><span>Totale stimato</span><strong id="prezzo-totale">€0</strong></div>
                     </div>
                 </aside>
 
@@ -705,6 +606,8 @@
                     </div>
 
                     <div class="form-grid">
+                        <h3 class="section-mobile">👕 Scegli il prodotto</h3>
+
                         <div class="field">
                             <label for="select-prodotto">Prodotto</label>
                             <select id="select-prodotto"></select>
@@ -717,20 +620,22 @@
                                 <option value="Richiesta personalizzata">Richiesta personalizzata</option>
                             </select>
                         </div>
-		
-			<div class="field" id="field-taglia">
-    				<label for="select-taglia">Taglia</label>
-    				<select id="select-taglia">
-        				<option value="0">0 mesi</option>
-        				<option value="1">1 mese</option>
-        				<option value="3">3 mesi</option>
-        				<option value="6">6 mesi</option>
-        				<option value="9">9 mesi</option>
-        				<option value="18">18 mesi</option>
-        				<option value="24">24 mesi</option>
-        				<option value="36">36 mesi</option>
-    				</select>
-			</div>
+
+                        <div class="field" id="field-taglia">
+                            <label for="select-taglia">Taglia</label>
+                            <select id="select-taglia">
+                                <option value="0">0 mesi</option>
+                                <option value="1">1 mese</option>
+                                <option value="3">3 mesi</option>
+                                <option value="6">6 mesi</option>
+                                <option value="9">9 mesi</option>
+                                <option value="18">18 mesi</option>
+                                <option value="24">24 mesi</option>
+                                <option value="36">36 mesi</option>
+                            </select>
+                        </div>
+
+                        <h3 class="section-mobile">🪡 Personalizza</h3>
 
                         <div class="field">
                             <label for="input-nome">Nome</label>
@@ -745,18 +650,18 @@
                         <div class="field">
                             <label for="select-font">Stile ricamo</label>
                             <select id="select-font">
-				<option value="Pacifico">Corsivo elegante</option>
-				<option value="Great Vibes">Corsivo classico</option>
-				<option value="Sacramento">Corsivo fine</option>
-				<option value="Parisienne">Romantico</option>
-				<option value="Dancing Script">Corsivo moderno</option>
-				<option value="Caveat">Scritto a mano</option>
-				<option value="Fredoka">Stampatello dolce</option>
+                                <option value="Pacifico">Corsivo elegante</option>
+                                <option value="Great Vibes">Corsivo classico</option>
+                                <option value="Sacramento">Corsivo fine</option>
+                                <option value="Parisienne">Romantico</option>
+                                <option value="Dancing Script">Corsivo moderno</option>
+                                <option value="Caveat">Scritto a mano</option>
+                                <option value="Fredoka">Stampatello dolce</option>
                             </select>
                         </div>
 
                         <div class="field">
-                            <label for="select-soggetto">Soggetto</label>
+                            <label for="input-soggetto">Soggetto</label>
                             <input type="text" id="input-soggetto" placeholder="Es. Orsetto">
                         </div>
 
@@ -764,7 +669,7 @@
                             <label>Elementi da ricamare</label>
                             <div class="checks">
                                 <label class="check-option">
-                                    <input type="checkbox" id="opzione-nome" checked>
+                                    <input type="checkbox" id="opzione-nome">
                                     Nome
                                     <span>Nome o breve testo ricamato.</span>
                                 </label>
@@ -774,44 +679,44 @@
                                     <span>Una o più iniziali decorative.</span>
                                 </label>
                                 <label class="check-option">
-                                    <input type="checkbox" id="opzione-soggetto" checked>
+                                    <input type="checkbox" id="opzione-soggetto">
                                     Soggetto
                                     <span>Soggetto semplice o richiesta su misura.</span>
                                 </label>
                             </div>
                         </div>
 
+                        <div class="field full" id="field-federa" style="display:none;">
+                            <label class="check-option" style="min-height:auto;">
+                                <input type="checkbox" id="opzione-federa">
+                                Federa con iniziali (+€8)
+                                <span>Ricamo delle iniziali anche sulla federa del set lenzuolino.</span>
+                            </label>
+                            <p style="margin:8px 0 0; font-size:13px; color:#777;">
+                                Compila il campo "Iniziali" per indicare cosa ricamare sulla federa.
+                            </p>
+                        </div>
+
+                        <h3 class="section-mobile">🎨 Colore del ricamo</h3>
+
                         <div class="field full">
-    				<label>Colore filato scritta</label>
-				<p style="margin:0 0 10px; font-size:13px; color:#777;">
-    					Scegli un colore rapido oppure apri il selettore personalizzato
-				</p>
-
-    				<div class="color-picker" id="color-picker"></div>
-
-    				<div style="margin-top:14px;">
-    					<button type="button" id="open-color-picker"
-        					style="
-            					padding:10px 14px;
-            					border-radius:8px;
-            					border:1px solid #eadfd7;
-            					background:#fff;
-            					cursor:pointer;
-            					font-size:13px;
-            					font-weight:500;
-        					">
-        					🎨 Scegli colore personalizzato
-    					</button>
-
-    					<input type="color" id="color-picker-input" value="#6ba9c8"
-        				style="width:0; height:0; opacity:0; position:absolute;">
-				</div>
-			</div>
+                            <label>Colore filato scritta</label>
+                            <p style="margin:0 0 10px; font-size:13px; color:#777;">Scegli un colore rapido oppure apri il selettore personalizzato</p>
+                            <div class="color-picker" id="color-picker"></div>
+                            <div style="margin-top:14px;">
+                                <button type="button" id="open-color-picker" style="padding:10px 14px; border-radius:8px; border:1px solid #eadfd7; background:#fff; cursor:pointer; font-size:13px; font-weight:500;">
+                                    🎨 Scegli colore personalizzato
+                                </button>
+                                <input type="color" id="color-picker-input" value="#f6a7b8" style="width:0; height:0; opacity:0; position:absolute;">
+                            </div>
+                        </div>
 
                         <div class="field full">
                             <label for="note">Note o richiesta personalizzata</label>
                             <textarea id="note" placeholder="Es. vorrei un disegno simile al modello pubblicato su Instagram, ma con farfalla e iniziali..."></textarea>
                         </div>
+
+                        <h3 class="section-mobile">📸 Immagini di riferimento</h3>
 
                         <div class="field full">
                             <label for="immagini-riferimento">Immagini di riferimento</label>
@@ -824,32 +729,20 @@
                     </div>
 
                     <div class="order-actions">
-    			<button id="main-cart-btn" type="button" onclick="gestisciCarrello()">
-    				Aggiungi al carrello
-			</button>
+                        <button id="main-cart-btn" class="btn" type="button" onclick="gestisciCarrello()">➕ Aggiungi al carrello</button>
+                        <button class="btn whatsapp" type="button" onclick="inviaWhatsApp()">Ordina su WhatsApp</button>
+                        <button class="btn instagram" type="button" onclick="apriInstagram()">Contattaci su Instagram</button>
+                    </div>
 
-    			<button class="btn whatsapp" type="button" onclick="inviaWhatsApp()">
-        			Ordina su WhatsApp
-    			</button>
+                    <h3 class="section-mobile">🛒 Carrello</h3>
 
-    			<button class="btn instagram" type="button" onclick="apriInstagram()">
-        			Scrivi su Instagram
-    			</button>
-		    </div>
+                    <div class="panel carrello-desktop">
+                        <h3>🛒 Carrello</h3>
+                        <div id="cart-items"></div>
+                        <div style="margin-top:12px; font-weight:600">Totale carrello: <span id="cart-total">€0</span></div>
+                        <button class="btn" style="background:#352d2d; color:white; margin-top:12px;" type="button" onclick="apriCheckout()">✨ Procedi al checkout</button>
+                    </div>
 
-		    <div class="panel" style="margin-top:20px">
-    			<h3>🛒 Carrello</h3>
-    			<div id="cart-items"></div>
-
-    			<div style="margin-top:12px; font-weight:600">
-        			Totale carrello: <span id="cart-total">€0</span>
-    			</div>
-
-			<button class="btn" style="background:#352d2d; color:white" type="button" onclick="apriCheckout()">
-    				Checkout carrello
-			</button>
-
-		    </div>
                     <p class="note">Dopo l'invio riceverai conferma disponibilità, tempi di realizzazione e modalità di pagamento tramite IBAN o link esterno.</p>
                 </section>
             </div>
@@ -858,43 +751,43 @@
 
     <footer>
         Sogni e Ricami - Ricami personalizzati fatti a mano <br>
-	🌍 Spedizioni in tutto il mondo. <br>
-	📦 Spedizione in Italia: €9. <br>
-	Tempi di realizzazione e consegna verranno confermati prima del pagamento.
+        🌍 Spedizioni in tutto il mondo. <br>
+        📦 Spedizione in Italia: €9. <br>
+        Tempi di realizzazione e consegna verranno confermati prima del pagamento.
     </footer>
 
+    <div class="mobile-summary">
+        <div id="mobile-total">€0</div>
+        <button id="mobile-cart-btn" class="btn btn-primary" type="button" onclick="gestisciCarrello()">➕ Aggiungi</button>
+    </div>
+
     <script>
-	let editingIndex = null;
+        let editingIndex = null;
+        let coloreSelezionato = "#f6a7b8";
+        let nomiImmaginiRiferimento = [];
+        let carrello = [];
+
         const CONFIG = {
             numeroWhatsApp: "393274297447",
             profiloInstagram: "_sogniericami_",
-            loghiPossibili: ["logo-scritta.png", "logo.jpeg", "logo.jpg", "logo.png", "logo.jog"],
-            costiExtra: {
-                nome: 10,
-                iniziali: 5,
-                disegno: 10,
-                soggettiAggiuntivi: 2
-            },
-	    spedizione: 9	
+            loghiPossibili: ["logo-scritta.png", "logo.jpeg", "logo.jpg", "logo.png"],
+            costiExtra: { nome: 10, iniziali: 5, disegno: 10, soggettiAggiuntivi: 2, federaIniziali: 8 },
+            spedizione: 9
         };
 
-	let carrello = [];
-
         const prodotti = [
-            { nome: "Body manica lunga profilo bianco", categoria: "Body", img: "body-lungo-bianco.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica lunga profilo rosa", categoria: "Body", img: "body-lungo-rosa.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica lunga profilo celeste", categoria: "Body", img: "body-lungo-celeste.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica lunga profilo blu", categoria: "Body", img: "body-lungo-blu.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica lunga profilo bordeaux", categoria: "Body", img: "body-lungo-bourdeaux.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-	    { nome: "Body manica corta profilo bianco", categoria: "Body", img: "body-corto-bianco.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica corta profilo rosa", categoria: "Body", img: "body-corto-rosa.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica corta profilo celeste", categoria: "Body", img: "body-corto-celeste.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Body manica corta profilo blu", categoria: "Body", img: "body-corto-blu.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" },
-            { nome: "Bavetta", categoria: "Bavetta", img: "bavetta.jpg", prezzo: 10, topTesto: "60%", topDisegno: "36%" },
-            { nome: "Set lenzuolino", categoria: "Lenzuolini", img: "lenzuolino.jpg", prezzo: 20, topTesto: "47%", topDisegno: "35%" }
+            { nome: "Body manica lunga profilo bianco", categoria: "Body", img: "body-lungo-bianco.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo rosa", categoria: "Body", img: "body-lungo-rosa.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo celeste", categoria: "Body", img: "body-lungo-celeste.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo blu", categoria: "Body", img: "body-lungo-blu.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo bordeaux", categoria: "Body", img: "body-lungo-bourdeaux.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo bianco", categoria: "Body", img: "body-corto-bianco.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo rosa", categoria: "Body", img: "body-corto-rosa.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo celeste", categoria: "Body", img: "body-corto-celeste.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo blu", categoria: "Body", img: "body-corto-blu.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Bavetta", categoria: "Bavetta", img: "bavetta.jpg", prezzo: 10, topTesto: "60%" },
+            { nome: "Set lenzuolino", categoria: "Lenzuolini", img: "lenzuolino.jpg", prezzo: 20, topTesto: "47%" }
         ];
-
-
 
         const colori = [
             { nome: "Rosa cipria", valore: "#f6a7b8" },
@@ -904,15 +797,6 @@
             { nome: "Bordeaux", valore: "#87384a" },
             { nome: "Grigio", valore: "#555555" }
         ];
-
-        const disegni = {
-            "": "",
-            "Cuore": "♡",
-            "Stella": "☆",
-            "Fiore": "✿",
-            "Orsetto": "ʕ•ᴥ•ʔ",
-            "Personalizzato": "✎"
-        };
 
         const selectProdotto = document.getElementById("select-prodotto");
         const selectModello = document.getElementById("select-modello");
@@ -926,81 +810,54 @@
         const imgVisualizzata = document.getElementById("prodotto-visualizzato");
         const placeholderPreview = document.getElementById("placeholder-preview");
         const testoAnteprima = document.getElementById("testo-anteprima");
-        const disegnoAnteprima = document.getElementById("disegno-anteprima");
         const prezzoBase = document.getElementById("prezzo-base");
         const prezzoExtra = document.getElementById("prezzo-extra");
-	const prezzoSpedizione = document.getElementById("spedizione");
         const prezzoTotale = document.getElementById("prezzo-totale");
         const opzioneNome = document.getElementById("opzione-nome");
         const opzioneIniziali = document.getElementById("opzione-iniziali");
         const opzioneSoggetto = document.getElementById("opzione-soggetto");
-	const selectTaglia = document.getElementById("select-taglia");
-	const fieldTaglia = document.getElementById("field-taglia");
-	const colorInput = document.getElementById("color-picker-input");
+        const opzioneFedera = document.getElementById("opzione-federa");
+        const selectTaglia = document.getElementById("select-taglia");
+        const fieldTaglia = document.getElementById("field-taglia");
+        const fieldFedera = document.getElementById("field-federa");
+        const colorInput = document.getElementById("color-picker-input");
+        const colorPicker = document.getElementById("color-picker");
 
-	const openColorPicker = document.getElementById("open-color-picker");
+        document.getElementById("open-color-picker").addEventListener("click", () => colorInput.click());
 
-	openColorPicker.addEventListener("click", () => {
-    		colorInput.click();
-	});
+        colorInput.addEventListener("input", () => {
+            coloreSelezionato = colorInput.value;
+            document.querySelectorAll(".color-option").forEach(el => el.classList.remove("selected"));
+            aggiornaTutto();
+        });
 
-	const colorPicker = document.getElementById("color-picker");
+        function selezionaColorePalette(valore) {
+            document.querySelectorAll(".color-option").forEach(el => el.classList.remove("selected"));
+            const index = colori.findIndex(c => c.valore.toLowerCase() === valore.toLowerCase());
+            if (index >= 0) {
+                document.querySelectorAll(".color-option")[index]?.classList.add("selected");
+            }
+        }
 
-	function creaPaletteColori() {
-    		colori.forEach((c) => {
-        		const wrapper = document.createElement("div");
-        		wrapper.className = "color-option";
+        function creaPaletteColori() {
+            colori.forEach((c) => {
+                const wrapper = document.createElement("div");
+                wrapper.className = "color-option";
+                wrapper.innerHTML = `<div class="color-swatch" style="background:${c.valore}"></div><span>${c.nome}</span>`;
 
-        		const swatch = document.createElement("div");
-        		swatch.className = "color-swatch";
-        		swatch.style.background = c.valore;
+                wrapper.addEventListener("click", () => {
+                    coloreSelezionato = c.valore;
+                    colorInput.value = c.valore;
+                    selezionaColorePalette(c.valore);
+                    testoAnteprima.style.transform = "translate(-50%, -50%) scale(1.05)";
+                    setTimeout(() => { testoAnteprima.style.transform = "translate(-50%, -50%) scale(1)"; }, 120);
+                    aggiornaTutto();
+                });
 
-        		const label = document.createElement("span");
-        		label.textContent = c.nome;
-
-        		wrapper.appendChild(swatch);
-        		wrapper.appendChild(label);
-
-        		wrapper.addEventListener("click", () => {
-        			coloreSelezionato = c.valore;
-            			colorInput.value = c.valore;
-
-            			document.querySelectorAll(".color-option")
-                		.forEach(el => el.classList.remove("selected"));
-
-            			wrapper.classList.add("selected");
-
-            			// micro feedback visivo
-            			testoAnteprima.style.transform = "translate(-50%, -50%) scale(1.05)";
-            			setTimeout(() => {
-                			testoAnteprima.style.transform = "translate(-50%, -50%) scale(1)";
-            			}, 120);
-
-            			aggiornaTutto();
-        		});
-
-        		colorPicker.appendChild(wrapper);
-    		});
-		// seleziona default iniziale
-		document.querySelectorAll(".color-option")[0]?.classList.add("selected");
-	}
-
-	function safeColor(value) {
-    		const s = new Option().style;
-    		s.color = value;
-    		return s.color ? value : "#6ba9c8";
-	}
-
-	colorInput.addEventListener("input", () => {
-    		coloreSelezionato = colorInput.value;
-    		aggiornaTutto();
-	});
-
-
-
-
-        let coloreSelezionato = "#6ba9c8";
-        let nomiImmaginiRiferimento = [];
+                colorPicker.appendChild(wrapper);
+            });
+            selezionaColorePalette(coloreSelezionato);
+        }
 
         function caricaLogo(index = 0) {
             const logo = document.getElementById("hero-logo");
@@ -1010,7 +867,6 @@
                 if (fallback) fallback.style.display = "grid";
                 return;
             }
-
             logo.onerror = () => caricaLogo(index + 1);
             logo.onload = () => {
                 logo.style.display = "block";
@@ -1024,7 +880,7 @@
         }
 
         function prodottoCorrente() {
-            return prodotti.find((prodotto) => prodotto.nome === selectProdotto.value) || prodotti[0];
+            return prodotti.find(p => p.nome === selectProdotto.value) || prodotti[0];
         }
 
         function popolaProdotti() {
@@ -1036,20 +892,33 @@
             });
         }
 
-	function aggiornaVisibilitaTaglia() {
-    		const prodotto = prodottoCorrente();
+        function resetOpzioniRicamo() {
+            opzioneNome.checked = false;
+            opzioneIniziali.checked = false;
+            opzioneSoggetto.checked = false;
+            opzioneFedera.checked = false;
+        }
 
-    		if (prodotto.categoria === "Body") {
-        		fieldTaglia.style.display = "block";
-    		} else {
-        		fieldTaglia.style.display = "none";
-    		}
-	}
+        function aggiornaVisibilitaTaglia() {
+            const prodotto = prodottoCorrente();
+            if (prodotto.categoria === "Body") {
+                fieldTaglia.style.display = "block";
+            } else {
+                fieldTaglia.style.display = "none";
+                selectTaglia.value = "";
+            }
 
-      
+            if (prodotto.categoria === "Lenzuolini") {
+                fieldFedera.style.display = "block";
+            } else {
+                fieldFedera.style.display = "none";
+                opzioneFedera.checked = false;
+            }
+        }
+
         function popolaModelli() {
             const grid = document.getElementById("models-grid");
-            prodotti.filter((prodotto) => prodotto.img).forEach((prodotto) => {
+            prodotti.filter(p => p.img).forEach((prodotto) => {
                 const card = document.createElement("button");
                 card.type = "button";
                 card.className = `model-card${prodotto.nome === prodotti[0].nome ? " selected" : ""}`;
@@ -1057,7 +926,8 @@
                 card.addEventListener("click", () => {
                     selectProdotto.value = prodotto.nome;
                     selectModello.value = "Modello Instagram";
-                    document.querySelectorAll(".model-card").forEach((item) => item.classList.remove("selected"));
+                    resetOpzioniRicamo();
+                    document.querySelectorAll(".model-card").forEach(item => item.classList.remove("selected"));
                     card.classList.add("selected");
                     aggiornaTutto();
                     document.getElementById("configura").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1074,11 +944,8 @@
 
             testoAnteprima.textContent = testo.join(" · ");
             testoAnteprima.style.color = coloreSelezionato;
-            testoAnteprima.style.fontFamily = selectFont.value;
+            testoAnteprima.style.fontFamily = `"${selectFont.value}", cursive`;
             testoAnteprima.style.top = prodotto.topTesto;
-            disegnoAnteprima.style.color = coloreSelezionato;
-            disegnoAnteprima.style.top = prodotto.topDisegno;
-	    disegnoAnteprima.textContent = "";
 
             if (prodotto.img) {
                 imgVisualizzata.style.display = "block";
@@ -1090,206 +957,201 @@
             }
         }
 
-	function calcolaPrezzo() {
-    		const prodotto = prodottoCorrente();
-    		let extra = 0;
+        function calcolaPrezzo() {
+            const prodotto = prodottoCorrente();
+            let extra = 0;
+            if (opzioneNome.checked) extra += CONFIG.costiExtra.nome;
+            if (opzioneIniziali.checked) extra += CONFIG.costiExtra.iniziali;
+            if (opzioneSoggetto.checked) extra += CONFIG.costiExtra.disegno;
+            if (opzioneFedera.checked) extra += CONFIG.costiExtra.federaIniziali;
 
-    		if (opzioneNome.checked) extra += CONFIG.costiExtra.nome;
-    		if (opzioneIniziali.checked) extra += CONFIG.costiExtra.iniziali;
-    		if (opzioneSoggetto.checked) extra += CONFIG.costiExtra.disegno;
+            const base = prodotto.prezzo;
+            const itemPrice = base + extra;
+            const totale = itemPrice + CONFIG.spedizione;
 
-    		const spedizione = CONFIG.spedizione;
+            prezzoBase.textContent = euro(base);
+            prezzoExtra.textContent = euro(extra);
+            prezzoTotale.textContent = euro(totale);
 
-    		prezzoBase.textContent = euro(prodotto.prezzo);
-    		prezzoExtra.textContent = euro(extra);
-    		prezzoSpedizione.textContent = euro(spedizione);
+            return { base, extra, itemPrice, totale };
+        }
 
-    		const totale = prodotto.prezzo + extra + spedizione;
-    		prezzoTotale.textContent = euro(totale);
+        function getConfigAttuale() {
+            const prodotto = prodottoCorrente();
+            const prezzoData = calcolaPrezzo();
 
-    		return totale;
-	}
+            return {
+                prodotto: prodotto.nome,
+                taglia: selectTaglia?.value || null,
+                nome: inputNome.value,
+                iniziali: inputIniziali.value,
+                soggetto: inputSoggetto.value,
+                font: selectFont.value,
+                colore: coloreSelezionato,
+                note: note.value,
+                opzioni: {
+                    nome: opzioneNome.checked,
+                    iniziali: opzioneIniziali.checked,
+                    soggetto: opzioneSoggetto.checked,
+                    federa: opzioneFedera.checked
+                },
+                federa: opzioneFedera.checked,
+                prezzo: prezzoData.itemPrice,
+                base: prezzoData.base,
+                extra: prezzoData.extra
+            };
+        }
 
-	function getConfigAttuale() {
-    		const prodotto = prodottoCorrente();
+        function gestisciCarrello() {
+            if (opzioneFedera.checked && !inputIniziali.value.trim()) {
+                alert('Per la federa con iniziali, compila il campo "Iniziali".');
+                inputIniziali.focus();
+                return;
+            }
 
-    		return {
-        		prodotto: prodotto.nome,
-        		taglia: selectTaglia?.value || null,
-        		nome: inputNome.value,
-        		iniziali: inputIniziali.value,
-        		soggetto: inputSoggetto.value,
-        		font: selectFont.value,
-        		colore: coloreSelezionato,
-        		prezzo: calcolaPrezzo()
-    		};
-	}
+            const config = getConfigAttuale();
+            if (editingIndex !== null) {
+                carrello[editingIndex] = config;
+                editingIndex = null;
+            } else {
+                carrello.push(config);
+            }
+            renderCarrello();
+            resetForm();
+        }
 
-	function gestisciCarrello() {
-    		const config = getConfigAttuale();
+        function aggiornaBottoneEditing() {
+            const btn = document.getElementById("main-cart-btn");
+            const mobileBtn = document.getElementById("mobile-cart-btn");
 
-    		if (editingIndex !== null) {
-        		carrello[editingIndex] = config;
-        		editingIndex = null;
-        		aggiornaBottoneEditing();
-    		} else {
-        		carrello.push(config);
-    		}
+            if (editingIndex !== null) {
+                btn.textContent = "💾 Salva modifiche";
+                btn.style.background = "#f6a7b8";
+                if (mobileBtn) mobileBtn.textContent = "💾 Salva";
+            } else {
+                btn.textContent = "➕ Aggiungi al carrello";
+                btn.style.background = "#8bb8a8";
+                if (mobileBtn) mobileBtn.textContent = "➕ Aggiungi";
+            }
+        }
 
-    		renderCarrello();
-    		resetForm();
-	}
+        function renderCarrello() {
+            const box = document.getElementById("cart-items");
+            const totalBox = document.getElementById("cart-total");
+            const mobileTotal = document.getElementById("mobile-total");
 
-	function annullaModifica() {
-    		editingIndex = null;
-    		aggiornaBottoneEditing();
-    		resetForm();
-	}
+            box.innerHTML = "";
+            let subtotale = 0;
 
-	function aggiornaBottoneEditing() {
-    		const btn = document.getElementById("main-cart-btn");
+            carrello.forEach((item, i) => {
+                subtotale += item.prezzo;
+                const div = document.createElement("div");
+                div.style.cssText = "border:1px solid #ddd;padding:10px;margin-bottom:8px;border-radius:8px";
+                div.innerHTML = `
+                    <h4 style="margin:0 0 8px">${item.prodotto}</h4>
+                    <div>📏 ${item.taglia || "-"}</div>
+                    <div>🪡 ${item.nome || "-"}</div>
+                    ${item.federa ? "<div>🛏️ Federa con iniziali</div>" : ""}
+                    <div>🎨 ${item.colore}</div>
+                    <div><b>${euro(item.prezzo)}</b></div>
+                    <div style="margin-top:8px;display:flex;gap:8px">
+                        <button type="button" onclick="iniziaModifica(${i})">✏️ Modifica</button>
+                        <button type="button" class="btn" style="background:#f6a7b8;color:white" onclick="rimuoviItem(${i})">🗑</button>
+                    </div>`;
+                box.appendChild(div);
+            });
 
-    		if (editingIndex !== null) {
-        		btn.textContent = "💾 Salva modifiche";
-        		btn.style.background = "#f6a7b8";
-    		} else {
-        		btn.textContent = "Aggiungi al carrello";
-        		btn.style.background = "#8bb8a8";
-    		}
-	}
+            const totale = subtotale + (carrello.length ? CONFIG.spedizione : 0);
+            totalBox.textContent = euro(totale);
+            if (mobileTotal) mobileTotal.textContent = euro(totale);
 
-	function aggiungiAlCarrello() {
-		aggiornaTutto();
-    		carrello.push(getConfigAttuale());
-    		renderCarrello();
-	}
+            if (carrello.length > 0) {
+                const riepilogo = document.createElement("div");
+                riepilogo.style.cssText = "margin-top:12px;padding:12px;border-top:1px solid #ddd;font-weight:600";
+                riepilogo.innerHTML = `
+                    <div>Subtotale: ${euro(subtotale)}</div>
+                    <div>Spedizione: ${euro(CONFIG.spedizione)}</div>
+                    <div style="margin-top:6px;font-size:18px">Totale: ${euro(totale)}</div>`;
+                box.appendChild(riepilogo);
+            }
 
-	function renderCarrello() {
-    		const box = document.getElementById("cart-items");
-    		const totalBox = document.getElementById("cart-total");
+            localStorage.setItem("carrello", JSON.stringify(carrello));
+            aggiornaBottoneEditing();
+        }
 
-    		box.innerHTML = "";
+        function iniziaModifica(index) {
+            const item = carrello[index];
+            editingIndex = index;
 
-    		let totale = 0;
+            selectProdotto.value = item.prodotto;
+            selectTaglia.value = item.taglia || "0";
+            inputNome.value = item.nome || "";
+            inputIniziali.value = item.iniziali || "";
+            inputSoggetto.value = item.soggetto || "";
+            selectFont.value = item.font || "Pacifico";
+            note.value = item.note || "";
 
-    		carrello.forEach((item, i) => {
-        		totale += item.prezzo;
+            opzioneNome.checked = item.opzioni?.nome ?? false;
+            opzioneIniziali.checked = item.opzioni?.iniziali ?? false;
+            opzioneSoggetto.checked = item.opzioni?.soggetto ?? false;
+            opzioneFedera.checked = item.opzioni?.federa ?? item.federa ?? false;
 
-        		const div = document.createElement("div");
-        		div.style.border = "1px solid #ddd";
-        		div.style.padding = "10px";
-        		div.style.marginBottom = "8px";
-        		div.style.borderRadius = "8px";
+            coloreSelezionato = item.colore || "#f6a7b8";
+            colorInput.value = coloreSelezionato;
+            selezionaColorePalette(coloreSelezionato);
 
-        		div.innerHTML = `
-    				<strong>${item.prodotto}</strong><br>
-    				Taglia: ${item.taglia || "-"}<br>
-   				Nome: ${item.nome || "-"}<br>
-    				Colore: ${item.colore}<br>
-    				Prezzo: €${item.prezzo}
+            aggiornaTutto();
+            aggiornaBottoneEditing();
+            document.getElementById("configura").scrollIntoView({ behavior: "smooth" });
+        }
 
-    				<div style="margin-top:8px; display:flex; gap:6px;">
-        				<button onclick="iniziaModifica(${i})">✏️ Modifica</button>
-        				<button onclick="rimuoviItem(${i})">❌</button>
-    				</div>
-			`;
-
-        		box.appendChild(div);
-    		});
-
-    		totalBox.textContent = `€${totale}`;
-	}
-
-	function iniziaModifica(index) {
-    		const item = carrello[index];
-    		editingIndex = index;
-
-    		selectProdotto.value = item.prodotto;
-    		selectTaglia.value = item.taglia || "0";
-    		inputNome.value = item.nome || "";
-    		inputIniziali.value = item.iniziali || "";
-    		inputSoggetto.value = item.soggetto || "";
-    		selectFont.value = item.font || "Pacifico";
-
-    		coloreSelezionato = item.colore || "#6ba9c8";
-    		colorInput.value = coloreSelezionato;
-
-    		aggiornaTutto();
-
-    		// cambia UI bottone
-    		aggiornaBottoneEditing();
-
-    		document.getElementById("configura").scrollIntoView({ behavior: "smooth" });
-	}
-
-	function rimuoviItem(index) {
-    		carrello.splice(index, 1);
-    		renderCarrello();
-	}
-
-	function modificaItem(index) {
-    		const item = carrello[index];
-
-    		// rimuove dal carrello
-    		carrello.splice(index, 1);
-    		renderCarrello();
-
-    		// riporta i dati nel form
-    		selectProdotto.value = item.prodotto;
-    		selectTaglia.value = item.taglia || "0";
-    		inputNome.value = item.nome || "";
-    		inputIniziali.value = item.iniziali || "";
-    		inputSoggetto.value = item.soggetto || "";
-    		selectFont.value = item.font || "Pacifico";
-    		coloreSelezionato = item.colore || "#6ba9c8";
-    		colorInput.value = coloreSelezionato;
-
-    		aggiornaTutto();
-
-    		// scroll al configuratore
-    		document.getElementById("configura").scrollIntoView({ behavior: "smooth" });
-		document.querySelectorAll(".color-option").forEach(el => {
-    			el.classList.remove("selected");
-		});
-	}
+        function rimuoviItem(index) {
+            carrello.splice(index, 1);
+            if (editingIndex === index) {
+                editingIndex = null;
+                resetForm();
+            } else if (editingIndex !== null && index < editingIndex) {
+                editingIndex--;
+            }
+            renderCarrello();
+        }
 
         function aggiornaTutto() {
             aggiornaAnteprima();
             calcolaPrezzo();
-	    aggiornaVisibilitaTaglia();
+            aggiornaVisibilitaTaglia();
         }
 
-	function apriCheckout() {
-    		if (carrello.length === 0) {
-        		alert("Il carrello è vuoto");
-        		return;
-    		}
+        function apriCheckout() {
+            if (carrello.length === 0) {
+                alert("Il carrello è vuoto");
+                return;
+            }
+            const subtotal = carrello.reduce((s, i) => s + i.prezzo, 0);
+            const totale = subtotal + CONFIG.spedizione;
+            const riepilogo = `🛒 CHECKOUT SOGNI E RICAMI
 
-    		const riepilogo = `
-			🛒 CHECKOUT SOGNI E RICAMI
+${carrello.map((item, i) => `#${i + 1}
+Prodotto: ${item.prodotto}
+Taglia: ${item.taglia || "-"}
+Nome: ${item.nome || "-"}
+Iniziali: ${item.iniziali || "-"}
+Soggetto: ${item.soggetto || "-"}
+Federa iniziali: ${item.federa ? "Sì" : "No"}
+Colore: ${item.colore}
+Prezzo: ${euro(item.prezzo)}`).join("\n\n")}
 
-			${carrello.map((item, i) => `
-				#${i + 1}
-				Prodotto: ${item.prodotto}
-				Taglia: ${item.taglia || "-"}
-				Nome: ${item.nome || "-"}
-				Iniziali: ${item.iniziali || "-"}
-				Colore: ${item.colore}
-				Prezzo: €${item.prezzo}
-			`).join("\n")}
+Totale articoli: ${euro(subtotal)}
+Spedizione: ${euro(CONFIG.spedizione)}
+Totale: ${euro(totale)}`;
 
-			Totale: €${carrello.reduce((s, i) => s + i.prezzo, 0)}
-		`;
-
-    		const url = `https://wa.me/${CONFIG.numeroWhatsApp}?text=${encodeURIComponent(riepilogo)}`;
-    			window.open(url, "_blank");
-	}
+            window.open(`https://wa.me/${CONFIG.numeroWhatsApp}?text=${encodeURIComponent(riepilogo)}`, "_blank");
+        }
 
         function aggiornaImmaginiRiferimento() {
             const files = Array.from(immaginiRiferimento.files || []);
-            nomiImmaginiRiferimento = files.map((file) => file.name);
+            nomiImmaginiRiferimento = files.map(file => file.name);
             referencePreview.innerHTML = "";
-
             files.slice(0, 8).forEach((file) => {
                 const figure = document.createElement("figure");
                 const img = document.createElement("img");
@@ -1303,45 +1165,35 @@
             });
         }
 
-        function cambiaColore(esadecimale, bottone) {
-            coloreSelezionato = esadecimale;
-            document.querySelectorAll(".color-btn").forEach((btn) => btn.classList.remove("selected"));
-            bottone.classList.add("selected");
+        function resetForm() {
+            inputNome.value = "";
+            inputIniziali.value = "";
+            inputSoggetto.value = "";
+            note.value = "";
+            opzioneNome.checked = false;
+            opzioneIniziali.checked = false;
+            opzioneSoggetto.checked = false;
+            opzioneFedera.checked = false;
+            selectFont.value = "Pacifico";
+            coloreSelezionato = "#f6a7b8";
+            colorInput.value = coloreSelezionato;
+            selezionaColorePalette(coloreSelezionato);
+            immaginiRiferimento.value = "";
+            referencePreview.innerHTML = "";
+            nomiImmaginiRiferimento = [];
+            selectTaglia.value = "0";
+            editingIndex = null;
             aggiornaTutto();
+            aggiornaBottoneEditing();
         }
 
-	function resetForm() {
-    		inputNome.value = "";
-    		inputIniziali.value = "";
-    		inputSoggetto.value = "";
-    		note.value = "";
-
-    		opzioneNome.checked = true;
-    		opzioneIniziali.checked = false;
-    		opzioneSoggetto.checked = true;
-
-    		selectFont.value = "Pacifico";
-
-    		// reset colore
-    		coloreSelezionato = "#6ba9c8";
-    		colorInput.value = coloreSelezionato;
-
-    		// reset selezione palette visiva
-    		document.querySelectorAll(".color-option")
-        		.forEach(el => el.classList.remove("selected"));
-
-    		document.querySelectorAll(".color-option")[0]
-        		?.classList.add("selected");
-
-    		aggiornaTutto();
-	}
-
         function riepilogoOrdine() {
-            const totale = calcolaPrezzo();
+            const { totale } = calcolaPrezzo();
             const elementi = [
                 opzioneNome.checked ? "nome" : "",
                 opzioneIniziali.checked ? "iniziali" : "",
-                opzioneSoggetto.checked ? "soggetto" : ""
+                opzioneSoggetto.checked ? "soggetto" : "",
+                opzioneFedera.checked ? "federa con iniziali" : ""
             ].filter(Boolean).join(", ");
 
             return `Ciao Sogni e Ricami!
@@ -1349,10 +1201,12 @@ Vorrei informazioni per questo ricamo:
 
 Prodotto: ${selectProdotto.value}
 Partenza: ${selectModello.value}
+Taglia: ${selectTaglia.value || "-"}
 Elementi: ${elementi || "da definire"}
 Nome: ${inputNome.value.trim() || "-"}
 Iniziali: ${inputIniziali.value.trim() || "-"}
 Soggetto: ${inputSoggetto.value.trim() || "-"}
+Federa iniziali: ${opzioneFedera.checked ? "Sì" : "No"}
 Stile: ${selectFont.options[selectFont.selectedIndex].textContent}
 Colore filato: ${coloreSelezionato}
 Spedizione: ${euro(CONFIG.spedizione)}
@@ -1364,42 +1218,33 @@ Vorrei confermare dettagli, tempi e pagamento tramite IBAN o link.`;
         }
 
         function inviaWhatsApp() {
-            const url = `https://wa.me/${CONFIG.numeroWhatsApp}?text=${encodeURIComponent(riepilogoOrdine())}`;
-            window.open(url, "_blank");
+            window.open(`https://wa.me/${CONFIG.numeroWhatsApp}?text=${encodeURIComponent(riepilogoOrdine())}`, "_blank");
         }
-
 
         function apriInstagram() {
-            const url = `https://www.instagram.com/${CONFIG.profiloInstagram}/`;
-            window.open(url, "_blank");
+            window.open(`https://www.instagram.com/${CONFIG.profiloInstagram}/`, "_blank");
         }
 
-        [
-    		selectProdotto,
-    		selectModello,
-    		selectFont,
-		selectTaglia,
-    		inputSoggetto,
-    		inputNome,
-    		inputIniziali,
-    		note,
-   		immaginiRiferimento,
-    		opzioneNome,
-    		opzioneIniziali,
-    		opzioneSoggetto
-	]
-	.forEach((elemento) => {
-    		elemento.addEventListener("input", aggiornaTutto);
-    		elemento.addEventListener("change", aggiornaTutto);
-	});
+        [selectProdotto, selectModello, selectFont, selectTaglia, inputSoggetto, inputNome, inputIniziali, note, opzioneNome, opzioneIniziali, opzioneSoggetto, opzioneFedera]
+            .forEach(el => {
+                el.addEventListener("input", aggiornaTutto);
+                el.addEventListener("change", aggiornaTutto);
+            });
 
         immaginiRiferimento.addEventListener("change", aggiornaImmaginiRiferimento);
+
+        try {
+            carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+        } catch {
+            carrello = [];
+        }
+
         caricaLogo();
-	popolaProdotti();
-	popolaModelli();
-	creaPaletteColori();
-	aggiornaTutto();
-	aggiornaVisibilitaTaglia();
+        popolaProdotti();
+        popolaModelli();
+        creaPaletteColori();
+        renderCarrello();
+        aggiornaTutto();
     </script>
 </body>
 </html>
