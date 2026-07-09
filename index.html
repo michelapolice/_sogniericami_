@@ -1233,6 +1233,8 @@
         const selectModello = document.getElementById("select-modello");
         const selectTestoTipo = document.getElementById("select-testo-tipo");
         const selectFont = document.getElementById("select-font");
+        const selectFontNome = document.getElementById("select-font-nome");
+        const selectFontIniziali = document.getElementById("select-font-iniziali");
         const inputSoggetto = document.getElementById("input-soggetto");
         const inputSoggetto2 = document.getElementById("input-soggetto-2");
         const inputNome = document.getElementById("input-nome");
@@ -1778,12 +1780,27 @@ aggiornaCampiSoggetto();
             });
         }
 
-        function creaRicamoOverlay(testo, lato, isSoggetto, topCentro) {
+        function getFontFamiliaPerTipo(tipo) {
+            const valore = tipo === "nome"
+                ? (selectFontNome?.value || "corsivo")
+                : tipo === "iniziali"
+                    ? (selectFontIniziali?.value || "corsivo")
+                    : "corsivo";
+
+            if (valore === "stampatello") {
+                return '"Fredoka", "Segoe UI", Arial, sans-serif';
+            }
+
+            return '"Great Vibes", "Pacifico", cursive';
+        }
+
+        function creaRicamoOverlay(testo, lato, isSoggetto, topCentro, fontFamily = null) {
             const el = document.createElement("div");
             el.className = `ricamo-overlay ricamo-overlay--${lato}${isSoggetto ? " soggetto" : ""}`;
             el.textContent = testo;
             el.style.color = coloreSelezionato;
-            el.style.fontFamily = `"${selectFont.value}", cursive`;
+            el.style.fontFamily = fontFamily || getFontFamiliaPerTipo(isSoggetto ? "soggetto" : "nome");
+            el.style.fontWeight = "600";
             if (lato === "centro" && topCentro) {
                 el.style.top = topCentro;
             }
@@ -1941,7 +1958,17 @@ aggiornaCampiSoggetto();
                 elementi.forEach((item) => perLato[item.lato].push(item));
                 ["sx", "dx"].forEach((lato) => {
                     perLato[lato].forEach((item, index) => {
-                        const overlay = creaRicamoOverlay(item.testo, lato, item.tipo.startsWith("soggetto"));
+                        const overlay = creaRicamoOverlay(
+                            item.testo,
+                            lato,
+                            item.tipo.startsWith("soggetto"),
+                            null,
+                            item.tipo === "nome"
+                                ? getFontFamiliaPerTipo("nome")
+                                : item.tipo === "iniziali"
+                                    ? getFontFamiliaPerTipo("iniziali")
+                                    : getFontFamiliaPerTipo("soggetto")
+                        );
                         if (perLato[lato].length > 1) {
                             overlay.style.top = `${19 + index * 8}%`;
                         }
@@ -1950,7 +1977,12 @@ aggiornaCampiSoggetto();
                 });
             } else if (elementi.length > 0) {
                 const testo = elementi.map((item) => item.testo).join(" · ");
-                ricamiAnteprima.appendChild(creaRicamoOverlay(testo, "centro", false, prodotto.topTesto));
+                const font = elementi[0]?.tipo === "nome"
+                    ? getFontFamiliaPerTipo("nome")
+                    : elementi[0]?.tipo === "iniziali"
+                        ? getFontFamiliaPerTipo("iniziali")
+                        : getFontFamiliaPerTipo("soggetto");
+                ricamiAnteprima.appendChild(creaRicamoOverlay(testo, "centro", false, prodotto.topTesto, font));
             }
 
             if (prodotto.img) {
@@ -2393,7 +2425,7 @@ Vorrei confermare dettagli, tempi e pagamento tramite IBAN o link.`;
             });
         });
 
-        [selectProdotto, selectModello, selectFont, selectTaglia, inputSoggetto, inputSoggetto2, inputNome, inputIniziali, note, opzioneNome, opzioneIniziali, opzioneSoggetto, opzioneSoggetto2, opzioneFedera]
+        [selectProdotto, selectModello, selectFont, selectFontNome, selectFontIniziali, selectTaglia, inputSoggetto, inputSoggetto2, inputNome, inputIniziali, note, opzioneNome, opzioneIniziali, opzioneSoggetto, opzioneSoggetto2, opzioneFedera]
             .forEach(el => {
                 if (!el) return;
                 el.addEventListener("input", () => { if (!suppressAggiornaTutto) aggiornaTutto(); });
