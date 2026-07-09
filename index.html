@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sogni e Ricami - Personalizza il tuo ricamo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@400;500;600&family=Great+Vibes&family=Pacifico&family=Sacramento&family=Parisienne&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa: #f6a7b8;
+            --rosa-soft: #fff1f4;
+            --salvia: #8bb8a8;
+            --salvia-soft: #eef7f3;
+            --carta: #fffaf5;
+            --inchiostro: #352d2d;
+            --testo: #5f5656;
+            --bordo: #eadfd7;
+            --ombra: 0 18px 45px rgba(92, 68, 54, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Fredoka", "Segoe UI", Arial, sans-serif;
+            color: var(--inchiostro);
+            background: var(--carta);
+            padding-bottom: 120px;
+        }
+
+        img { max-width: 100%; }
+
+        button, input, select, textarea { font: inherit; }
+
+        .hero {
+            min-height: clamp(520px, 85vh, 900px);
+            display: grid;
+            align-items: center;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(246, 167, 184, 0.22), transparent 34%),
+                linear-gradient(135deg, #fffaf5, #eef7f3);
+            color: var(--inchiostro);
+            padding: 28px 18px;
+        }
+
+
+.section-inner,
+.hero-content {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+}
+
+
+        .hero-logo {
+            display: block;
+            width: min(620px, 88vw);
+            max-height: 330px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+	@media (max-width: 620px) {
+
+    		.hero-content,
+    		.section-inner {
+        		width: 100%;
+        		max-width: 100%;
+    		}
+
+	}
+
+        .logo-fallback {
+            display: none;
+            width: min(330px, 72vw);
+            min-height: 190px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(234, 223, 215, 0.9);
+            box-shadow: var(--ombra);
+            place-items: center;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .logo-fallback span {
+            font-family: "Great Vibes", "Pacifico", cursive;
+            color: var(--rosa);
+            font-size: clamp(44px, 10vw, 74px);
+            line-height: 0.95;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.4vw, 24px);
+            line-height: 1.45;
+            margin: 0 0 28px;
+            max-width: 560px;
+        }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .btn {
+            border: 0;
+            border-radius: 999px;
+            padding: 13px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            font-weight: 600;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+        }
+
+        .btn-primary { background: var(--inchiostro); color: white; }
+
+        .btn-secondary {
+            background: white;
+            color: var(--inchiostro);
+            border: 1px solid var(--bordo);
+        }
+
+        .section { padding: 56px clamp(18px, 5vw, 72px); }
+
+        .section-inner {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 22px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .section-title p, .intro-text {
+            color: var(--testo);
+            line-height: 1.55;
+            margin: 0;
+            max-width: 620px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .pill {
+            border: 1px solid var(--bordo);
+            border-radius: 999px;
+            padding: 9px 13px;
+            background: var(--rosa-soft);
+            font-size: 14px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .step {
+            min-height: 130px;
+            border-radius: 8px;
+            padding: 18px;
+            background: var(--salvia-soft);
+            border: 1px solid #dcece5;
+        }
+
+        .step strong { display: block; font-size: 19px; margin-bottom: 8px; }
+        .step span { color: var(--testo); line-height: 1.45; }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .model-card {
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            padding: 0;
+        }
+
+        .model-card.selected {
+            outline: 3px solid var(--rosa);
+            outline-offset: 2px;
+        }
+
+        .model-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            background: var(--rosa-soft);
+        }
+
+        .model-card span {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+            color: var(--testo);
+        }
+
+        .mobile-summary {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 12px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid #eee;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 999;
+        }
+
+        .mobile-summary button { flex: 1; height: 48px; }
+
+        .mobile-price-stack {
+            display: grid;
+            gap: 2px;
+            min-width: 118px;
+        }
+
+        .mobile-price-stack span {
+            color: var(--testo);
+            font-size: 12px;
+            line-height: 1.1;
+        }
+
+        .mobile-price-stack strong {
+            font-size: 16px;
+            line-height: 1.15;
+        }
+
+        #mobile-total { font-weight: 600; font-size: 14px; }
+
+        .configurator-band {
+            background: #ffffff;
+            border-top: 1px solid var(--bordo);
+            border-bottom: 1px solid var(--bordo);
+        }
+
+        .configurator {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1.12fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .preview-wrap { position: sticky; top: 20px; }
+
+        .preview-box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--bordo);
+            background: var(--rosa-soft);
+            box-shadow: var(--ombra);
+        }
+
+        #prodotto-visualizzato {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+        }
+
+        .placeholder-preview {
+            aspect-ratio: 4 / 5;
+            display: none;
+            place-items: center;
+            padding: 26px;
+            text-align: center;
+            color: var(--testo);
+            background: linear-gradient(135deg, #fff7f1, #eef7f3);
+        }
+
+        #ricami-anteprima {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            transition: transform 0.12s ease;
+        }
+
+        .ricamo-overlay {
+            position: absolute;
+            text-align: center;
+            line-height: 1.1;
+            white-space: normal;
+            max-width: 30%;
+            pointer-events: none;
+            text-shadow:
+                0.5px 0.5px 0 rgba(255, 255, 255, 0.95),
+                -0.5px -0.5px 0 rgba(0, 0, 0, 0.1),
+                1px 1px 2px rgba(0, 0, 0, 0.12),
+                0 0 4px rgba(255, 255, 255, 0.35);
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.18));
+            letter-spacing: 0.03em;
+            font-size: clamp(13px, 3.2vw, 20px);
+        }
+
+        .ricamo-overlay--sx {
+            top: 21%;
+            left: 73%;
+            transform: translate(-50%, -50%) rotate(10deg);
+        }
+
+        .ricamo-overlay--dx {
+            top: 21%;
+            left: 27%;
+            transform: translate(-50%, -50%) rotate(-10deg);
+        }
+
+        .ricamo-overlay--centro {
+            top: 47%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 86%;
+            font-size: clamp(22px, 5vw, 36px);
+        }
+
+        .ricamo-overlay.soggetto {
+            font-size: clamp(18px, 4vw, 26px);
+            letter-spacing: 0;
+        }
+
+        .colletto-opzioni {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .colletto-riga {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 18px;
+            padding: 12px;
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            background: #fffdfb;
+        }
+
+        .colletto-riga strong {
+            min-width: 78px;
+            font-size: 14px;
+        }
+
+        .colletto-riga label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .colletto-riga input[type="radio"] {
+            width: auto;
+        }
+
+        .colletto-riga label.disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .field-help {
+            margin: 0 0 10px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.45;
+        }
+
+        .price-box {
+            margin-top: 14px;
+            padding: 18px;
+            border-radius: 8px;
+            background: var(--salvia-soft);
+            border: 1px solid #dcece5;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 8px;
+            color: var(--testo);
+        }
+
+        .price-row.total {
+            color: var(--inchiostro);
+            font-size: 25px;
+            font-weight: 600;
+            border-top: 1px solid #cfe4db;
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .panel {
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            padding: 22px;
+            background: white;
+            box-shadow: var(--ombra);
+        }
+
+.carrello-mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: white;
+    overflow: auto;
+    transform: translateY(100%);
+    transition: 0.3s ease;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.carrello-mobile.open {
+    transform: translateY(0);
+}
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .field { text-align: left; }
+        .field.full { grid-column: 1 / -1; }
+
+        label {
+            display: block;
+            color: var(--testo);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            background: #fffdfb;
+            color: var(--inchiostro);
+            padding: 12px;
+            outline: 0;
+        }
+
+        textarea { min-height: 92px; resize: vertical; }
+
+        select:focus, input:focus, textarea:focus {
+            border-color: var(--rosa);
+            box-shadow: 0 0 0 3px rgba(246, 167, 184, 0.18);
+        }
+
+        .checks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .hidden-option { display: none; }
+
+        .inline-action {
+            width: auto;
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            background: #fffdfb;
+            color: var(--inchiostro);
+            padding: 10px 13px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .inline-action:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .check-option {
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            background: #fffdfb;
+            min-height: 74px;
+        }
+
+        .check-option input { width: auto; margin-right: 7px; }
+
+        .check-option span {
+            display: block;
+            margin-top: 6px;
+            color: var(--testo);
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        /* .color-picker {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .color-picker::-webkit-scrollbar { display: none; }
+
+        .color-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 10px;
+            transition: 0.2s ease;
+            border: 1px solid transparent;
+            flex-shrink: 0;
+        }
+
+        .color-option:hover { transform: translateY(-2px); }
+
+        .color-swatch {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            border: 2px solid white;
+            border-radius: 8px;
+        }
+
+        .color-option span { font-size: 11px; color: #555; text-align: center; }
+
+        .color-option.selected {
+            border: 1px solid #352d2d;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .color-option.selected::after {
+            content: "✔";
+            font-size: 12px;
+            color: #352d2d;
+            margin-top: 2px;
+        } */
+
+    .color-picker{
+
+        display:flex;
+        flex-wrap:wrap;
+        gap:12px 17px;
+        justify-content:center;
+        margin-top:20px;
+
+    }
+
+    .spolina{
+
+        width:54px;
+        text-align:center;
+        cursor:pointer;
+        border:1px solid transparent;
+        border-radius:2px;
+        padding:4px 3px 7px;
+        transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+
+    }
+
+    .svg-spolina{
+
+        width:45px;
+        display:block;
+        margin:auto;
+        filter:none;
+
+    }
+
+    .spolina span{
+
+        display:block;
+        margin-top:5px;
+        font-size:11px;
+        font-weight:600;
+        line-height:1.15;
+
+    }
+
+    .spolina:hover{
+
+        transform:translateY(-3px);
+        background:#fffaf7;
+
+    }
+
+    .spolina.attiva{
+
+        transform:translateY(-3px);
+        border-color:#352d2d;
+        border-style:dashed;
+        background:#fffdfb;
+        box-shadow:none;
+
+    }
+
+    .spolina.attiva svg{
+
+        filter:none;
+
+    }
+
+    .color-group-title{
+
+        flex-basis:100%;
+        margin:8px 0 -4px;
+        color:#7a6b66;
+        font-size:12px;
+        font-weight:700;
+        text-align:left;
+
+    }
+
+
+        .upload-box {
+            border: 1px dashed #d9c9bd;
+            border-radius: 8px;
+            padding: 16px;
+            background: #fffdfb;
+        }
+
+        .upload-box input { border: 0; padding: 0; background: transparent; }
+
+        .upload-help {
+            margin: 10px 0 0;
+            color: var(--testo);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .reference-preview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .reference-preview figure {
+            margin: 0;
+            border: 1px solid var(--bordo);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .reference-preview img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .reference-preview figcaption {
+            padding: 7px;
+            color: var(--testo);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .order-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+            align-items: stretch;
+        }
+
+        .order-actions .btn {
+            width: 100%;
+            min-width: 0;
+        }
+
+        /* Ensure the action block and the informational note occupy full width
+           of the panel and the note always appears below the buttons on desktop */
+        .panel > .order-actions {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .panel > .note {
+            display: block;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .actions-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .actions-wrap .order-actions {
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        /* span actions to full form width so buttons align with full-width fields */
+        .form-grid .actions-wrap {
+            grid-column: 1 / -1;
+            align-items: stretch;
+        }
+
+        #main-cart-btn {
+            grid-column: 1 / -1;
+        }
+
+        .order-actions .whatsapp {
+            grid-column: 1;
+        }
+
+        .order-actions .instagram {
+            grid-column: 2;
+        }
+
+        #main-cart-btn { background: #8bb8a8; color: white; }
+
+        .whatsapp { background: #25d366; color: white; }
+        .instagram { background: #352d2d; color: white; }
+
+        .note {
+            margin: 14px 0 0;
+            color: var(--testo);
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        footer {
+            padding: 30px 18px;
+            text-align: center;
+            color: var(--testo);
+            background: var(--rosa-soft);
+        }
+
+        .section-mobile { display: none; }
+
+        @media (min-width: 921px) {
+            .mobile-summary {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .carrello-desktop {
+                display: none;
+            }
+        }
+
+        @media (max-width: 920px) {
+            .intro-grid, .configurator { grid-template-columns: 1fr; }
+            .preview-wrap { position: static; order: -1; }
+            .panel { padding: 18px; }
+            .models-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .carrello-desktop { display: none; }
+            body { padding-bottom: 88px; }
+
+            .section-mobile {
+                display: block;
+                grid-column: 1 / -1;
+                font-size: 20px;
+                margin: 25px 0 15px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
+            }
+	    .configurator-band .panel{
+        	padding:16px;
+    	    }
+        }
+
+       	@media (max-width: 620px) {
+    	    .hero {min-height: auto; padding: 34px 16px 28px;}
+            .hero-logo { width: min(430px, 92vw); max-height: 210px; margin: 0 auto 12px; }
+            .logo-fallback { width: min(260px, 72vw); min-height: 140px; margin: 0 auto 14px; }
+            .hero p { font-size: 17px; max-width: 100%; margin-bottom: 18px; }
+            .hero-actions .btn { flex: 1 1 100%; }
+            .section { padding: 34px 16px; }
+            .section-title { display: block; }
+            .section-title p { margin-top: 10px; }
+            .steps, .form-grid, .checks { grid-template-columns: 1fr; }
+            .order-actions { flex-direction: column; }
+            .order-actions .btn { flex: 1 1 100%; min-width: 0; }
+            .models-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .reference-preview { grid-template-columns: repeat(2, 1fr); }
+            .mobile-summary { align-items: stretch; }
+            .mobile-summary button { height: auto; min-height: 50px; padding-inline: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <img class="hero-logo" id="hero-logo" src="logo-scritta.png" alt="Logo Sogni e Ricami">
+            <div class="logo-fallback" id="logo-fallback" aria-hidden="true"><span>Sogni<br>e Ricami</span></div>
+            <p>🪡🧵 Ogni ricamo è fatto a mano con amore, pazienza e filati di alta qualità. Scegli e personalizza il soggetto perfetto per il corredino dei tuoi piccoli o per un regalo indimenticabile! 🧸✨</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#configura">Configura il tuo ricamo</a>
+                <a class="btn btn-secondary" href="#modelli">Guarda i modelli</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="section-inner intro-grid">
+                <div>
+                    <h2>Ricami su misura, pensati per chi ama i dettagli che fanno la differenza ☁️✨</h2>
+                    <p class="intro-text">Puoi scegliere un modello già pubblicato su Instagram oppure inviare una richiesta personalizzata. Ogni prodotto può essere realizzato con una combinazione di elementi: nome, disegno, iniziali o più dettagli insieme.</p>
+                    <div class="pill-row">
+                        <span class="pill">Body personalizzati</span>
+                        <span class="pill">Bavette ricamate</span>
+                        <span class="pill">Set lenzuolini</span>
+                        <span class="pill">Ordini via WhatsApp o Instagram</span>
+                    </div>
+                </div>
+                <div class="steps">
+                    <div class="step"><strong>1. Scegli</strong><span>Parti da un modello visto su Instagram o da una richiesta su misura.</span></div>
+                    <div class="step"><strong>2. Personalizza</strong><span>Aggiungi nome, iniziali, disegno, colore del filato e note.</span></div>
+                    <div class="step"><strong>3. Conferma</strong><span>Invia il riepilogo e ricevi IBAN o link di pagamento.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="modelli">
+            <div class="section-inner">
+                <div class="section-title">
+                    <h2>Modelli disponibili</h2>
+                </div>
+                <div class="models-grid" id="models-grid"></div>
+            </div>
+        </section>
+
+        <section class="section configurator-band" id="configura">
+            <div class="section-inner configurator">
+                <aside class="preview-wrap">
+                    <div class="preview-box">
+                        <img id="prodotto-visualizzato" src="body-lungo-bianco.jpg" alt="Anteprima prodotto personalizzato">
+                        <div class="placeholder-preview" id="placeholder-preview">Caricheremo l'anteprima finale dopo aver ricevuto foto o dettagli della richiesta.</div>
+                        <div id="ricami-anteprima" aria-hidden="true"></div>
+                    </div>
+                    <div class="price-box" aria-live="polite">
+                        <div class="price-row"><span>Prodotto base</span><strong id="prezzo-base">€0</strong></div>
+                        <div class="price-row"><span>Personalizzazioni</span><strong id="prezzo-extra">€0</strong></div>
+                        <div class="price-row"><span>Spedizione</span><strong id="spedizione">9,00 €</strong></div>
+                        <div class="price-row total"><span>Totale stimato</span><strong id="prezzo-totale">€0</strong></div>
+                    </div>
+                </aside>
+
+                <section class="panel">
+                    <div class="section-title">
+                        <h2>Configura</h2>
+                        <p>Il prezzo si aggiorna in base agli elementi selezionati. Il prezzo base è riferito al prodotto senza ricamo. Il totale è una stima da confermare prima del pagamento.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <h3 class="section-mobile">👕 Scegli il prodotto</h3>
+
+                        <div class="field">
+                            <label for="select-prodotto">Prodotto</label>
+                            <select id="select-prodotto">
+                                <option value="">Seleziona il prodotto</option>
+                            </select>
+                            <!-- <p class="field-help" id="product-price-summary">Prezzo parziale: €0,00</p> -->
+                        </div>
+
+                        <div class="field">
+                            <label for="select-modello">Partenza</label>
+                            <select id="select-modello">
+                                <option value="Modello Instagram">Modello Instagram</option>
+                                <option value="Richiesta personalizzata">Richiesta personalizzata</option>
+                            </select>
+                        </div>
+
+                        <div class="field" id="field-taglia">
+                            <label for="select-taglia">Taglia</label>
+                            <select id="select-taglia">
+                                <option value="0">0 mesi</option>
+                                <option value="1">1 mese</option>
+                                <option value="3">3 mesi</option>
+                                <option value="6">6 mesi</option>
+                                <option value="9">9 mesi</option>
+                                <option value="18">18 mesi</option>
+                                <option value="24">24 mesi</option>
+                                <option value="36">36 mesi</option>
+                            </select>
+                        </div>
+
+                        <h3 class="section-mobile">🪡 Personalizza</h3>
+
+
+                        <div class="field full">
+                            <label>Elementi da ricamare</label>
+
+<div class="field">
+    <label for="select-testo-tipo">Nome o iniziali</label>
+    <select id="select-testo-tipo">
+        <option value="">Nessuno</option>
+        <option value="nome">Nome (+10€)</option>
+        <option value="iniziali">Iniziali (+5€)</option>
+    </select>
+    <p class="field-help">Seleziona Nome o Iniziali e scegli il colore del ricamo.</p>
+</div>
+
+<div class="field" id="field-nome" style="display:none;">
+    <label for="input-nome">Nome</label>
+    <input type="text" id="input-nome" placeholder="Es. Mattia" maxlength="18">
+    <div style="margin-top:8px;">
+        <label for="select-font-nome" style="font-weight:600; font-size:13px; display:block; margin-bottom:6px;">Stile Nome</label>
+        <select id="select-font-nome" style="padding:8px; border-radius:8px; border:1px solid #eadfd7;">
+            <option value="corsivo">Corsivo</option>
+            <option value="stampatello">Stampatello</option>
+        </select>
+    </div>
+</div>
+
+<div class="field" id="field-iniziali" style="display:none;">
+    <label for="input-iniziali">Iniziali</label>
+    <input type="text" id="input-iniziali" placeholder="Es. M.G." maxlength="8">
+    <div style="margin-top:8px;">
+        <label for="select-font-iniziali" style="font-weight:600; font-size:13px; display:block; margin-bottom:6px;">Stile Iniziali</label>
+        <select id="select-font-iniziali" style="padding:8px; border-radius:8px; border:1px solid #eadfd7;">
+            <option value="corsivo">Corsivo</option>
+            <option value="stampatello">Stampatello</option>
+        </select>
+    </div>
+</div>
+
+<div class="field" id="field-font" style="display:none;">
+    <label for="select-font">Font</label>
+    <select id="select-font">
+        <option value="Pacifico">Pacifico</option>
+        <option value="Caveat">Caveat</option>
+        <option value="Dancing Script">Dancing Script</option>
+        <option value="Great Vibes">Great Vibes</option>
+        <option value="Parisienne">Parisienne</option>
+        <option value="Sacramento">Sacramento</option>
+    </select>
+</div>
+
+<div class="field">
+    <label for="select-soggetto-tipo">Soggetto</label>
+    <select id="select-soggetto-tipo">
+        <option value="">Nessuno</option>
+        <option value="uno">1 soggetto (+10€)</option>
+        <option value="due">2 soggetti (+20€)</option>
+    </select>
+    <p class="field-help">Ogni soggetto aggiuntivo ha un costo di 10€.</p>
+</div>
+
+<div class="field" id="field-soggetto" style="display:none;">
+    <label for="input-soggetto" id="label-soggetto-1">Soggetto 1</label>
+    <input type="text" id="input-soggetto" placeholder="Es. Orsetto">
+</div>
+
+<div class="field" id="field-soggetto-2" style="display:none;">
+    <label for="input-soggetto-2" id="label-soggetto-2">Soggetto 2</label>
+    <input type="text" id="input-soggetto-2" placeholder="Es. Fiocco">
+</div>
+
+<div class="checks">
+    <label class="check-option hidden-option">
+        <input type="checkbox" id="opzione-nome">
+        <span id="label-opzione-nome">Nome</span>
+        <span>Nome o breve testo ricamato.</span>
+    </label>
+    <label class="check-option hidden-option">
+        <input type="checkbox" id="opzione-iniziali">
+        <span id="label-opzione-iniziali">Iniziali</span>
+        <span>Una o più iniziali decorative.</span>
+    </label>
+    <label class="check-option hidden-option">
+        <input type="checkbox" id="opzione-soggetto">
+        <span id="label-opzione-soggetto">Soggetto</span>
+        <span>Un soggetto decorativo.</span>
+    </label>
+    <label class="check-option hidden-option">
+        <input type="checkbox" id="opzione-soggetto-2">
+        <span id="label-opzione-soggetto-2">Secondo soggetto</span>
+        <span>Un secondo soggetto decorativo.</span>
+    </label>
+</div>
+
+                        <div class="field full" id="field-colletto" style="display:none;">
+                            <label>Posizione colletto</label>
+                            <div class="colletto-opzioni">
+                                <div class="colletto-riga" id="colletto-nome">
+                                    <strong>Nome</strong>
+                                    <label><input type="radio" name="colletto-nome" value="sx" checked> sinistra</label>
+                                    <label><input type="radio" name="colletto-nome" value="dx"> destra</label>
+                                </div>
+                                <div class="colletto-riga" id="colletto-iniziali">
+                                    <strong>Iniziali</strong>
+                                    <label><input type="radio" name="colletto-iniziali" value="sx" checked> sinistra</label>
+                                    <label><input type="radio" name="colletto-iniziali" value="dx"> destra</label>
+                                </div>
+                                <div class="colletto-riga" id="colletto-soggetto">
+                                    <strong>Soggetto</strong>
+                                    <label><input type="radio" name="colletto-soggetto" value="sx"> sinistra</label>
+                                    <label><input type="radio" name="colletto-soggetto" value="dx" checked> destra</label>
+                                </div>
+                                <div class="colletto-riga" id="colletto-soggetto-2">
+                                    <strong>Secondo soggetto</strong>
+                                    <label><input type="radio" name="colletto-soggetto-2" value="sx"> sinistra</label>
+                                    <label><input type="radio" name="colletto-soggetto-2" value="dx" checked> destra</label>
+                                </div>
+                            </div>
+                            <p class="field-help">Scegli il lato del colletto per ogni elemento del body.</p>
+                        </div>
+
+                        <div class="field full" id="field-federa" style="display:none;">
+                            <label class="check-option" style="min-height:auto;">
+                                <input type="checkbox" id="opzione-federa">
+                                <span id="label-opzione-federa">Federa con iniziali</span>
+                                <span>Ricamo delle iniziali anche sulla federa del set lenzuolino.</span>
+                            </label>
+                            <div id="field-federa-iniziali" style="display:none; margin-top:10px;">
+                                <label for="input-federa-iniziali">Iniziali per la federa</label>
+                                <input type="text" id="input-federa-iniziali" placeholder="Es. M.G." maxlength="8">
+                                <p class="field-help">Aggiungi le iniziali da ricamare sulla federa.</p>
+                            </div>
+                            <p style="margin:8px 0 0; font-size:13px; color:#777;">
+                                Compila il campo "Iniziali" per indicare cosa ricamare sulla federa.
+                            </p>
+                        </div>
+
+                        <div id="field-colore" class="field full" style="display:none;">
+                            <h3 class="section-mobile">🎨 Colore del ricamo</h3>
+
+                            <div>
+                                <label>Colore filato scritta</label>
+                                <p style="margin:0 0 10px; font-size:13px; color:#777;">Scegli uno dei colori disponibili qui sotto 🧵</p>
+                                <div class="color-picker" id="color-picker"></div>
+                                <input type="color" id="color-picker-input" value="#7f4850" style="width:0; height:0; opacity:0; position:absolute;" disabled>
+                            </div>
+                        </div>
+
+                        <div class="field full">
+                            <label for="note">Note o richiesta personalizzata</label>
+                            <textarea id="note" placeholder="Es. vorrei un disegno simile al modello pubblicato su Instagram, ma con farfalla e iniziali..."></textarea>
+                        </div>
+
+                        <h3 class="section-mobile">📸 Immagini di riferimento</h3>
+
+                        <div class="field full">
+                            <label for="immagini-riferimento">Immagini di riferimento</label>
+                            <div class="upload-box">
+                                <input type="file" id="immagini-riferimento" accept="image/*" multiple>
+                                <p class="upload-help">Seleziona foto, disegni o screenshot da usare come riferimento. Le vedrai qui sotto; dopo il messaggio WhatsApp dovrai inviarle nella chat.</p>
+                                <div class="reference-preview" id="reference-preview" aria-live="polite"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions-wrap">
+                        <div class="order-actions">
+                            <button id="main-cart-btn" class="btn" type="button" onclick="gestisciCarrello()">➕ Aggiungi al carrello</button>
+                            <button class="btn whatsapp" type="button" onclick="inviaWhatsApp()">Ordina su WhatsApp</button>
+                            <button class="btn instagram" type="button" onclick="apriInstagram()">Contattaci su Instagram</button>
+                        </div>
+
+                        <p class="note">Dopo l'invio riceverai conferma disponibilità, tempi di realizzazione e modalità di pagamento tramite IBAN o link esterno.</p>
+                    </div>
+
+                    <div class="panel carrello-desktop">
+                        <h3>🛒 Carrello</h3>
+                        <div id="cart-items"></div>
+                        <div style="margin-top:12px; font-weight:600">Totale carrello: <span id="cart-total">€0</span></div>
+                        <button class="btn" style="background:#352d2d; color:white; margin-top:12px;" type="button" onclick="apriCheckout()">✨ Procedi al checkout</button>
+                    </div>
+
+<div id="carrello-mobile" class="carrello-mobile">
+    <h3>🛒 Carrello</h3>
+    <div id="cart-items-mobile"></div>
+
+    <div style="margin-top:12px; font-weight:600">
+        Totale carrello: <span id="cart-total-mobile">€0</span>
+    </div>
+
+    <button class="btn" style="background:#352d2d; color:white; margin-top:12px;" type="button" onclick="apriCheckout()">
+        ✨ Procedi al checkout
+    </button>
+
+    <button class="btn" style="margin-top:10px;" onclick="document.getElementById('carrello-mobile').classList.remove('open')">
+        Chiudi
+    </button>
+</div>
+
+                </section>
+            </div>
+        </section>
+    <div class="mobile-summary">
+        <div class="mobile-price-stack">
+            <span>Articolo</span>
+            <strong id="mobile-item-total">0,00 euro</strong>
+            <span>Carrello <b id="mobile-total">0,00 euro</b></span>
+        </div>
+
+        <button class="btn" type="button"
+            onclick="document.getElementById('carrello-mobile').classList.add('open')">
+            🛒 Carrello
+        </button>
+    </div>
+
+    </main>
+
+    <footer>
+        Sogni e Ricami - Ricami personalizzati fatti a mano <br>
+        🌍 Spedizioni in tutto il mondo. <br>
+        📦 Spedizione in Italia: 9,00 €. <br>
+        Tempi di realizzazione e consegna verranno confermati prima del pagamento.
+    </footer>
+
+    <script>
+        let editingIndex = null;
+        let coloreSelezionato = "#7f4850";
+        let nomiImmaginiRiferimento = [];
+        let carrello = [];
+        let ultimoCollettoCamb = null;
+
+        const CONFIG = {
+            numeroWhatsApp: "393274297447",
+            profiloInstagram: "_sogniericami_",
+            loghiPossibili: ["logo-scritta.png", "logo.jpeg", "logo.jpg", "logo.png"],
+            costiExtra: { nome: 10, iniziali: 5, disegno: 10, soggettiAggiuntivi: 10, federaIniziali: 8 },
+            spedizione: 9
+        };
+
+        const prodotti = [
+            { nome: "Body manica lunga profilo bianco", categoria: "Body", img: "body-lungo-bianco.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo rosa", categoria: "Body", img: "body-lungo-rosa.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo celeste", categoria: "Body", img: "body-lungo-celeste.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo blu", categoria: "Body", img: "body-lungo-blu.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica lunga profilo bordeaux", categoria: "Body", img: "body-lungo-bourdeaux.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo bianco", categoria: "Body", img: "body-corto-bianco.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo rosa", categoria: "Body", img: "body-corto-rosa.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo celeste", categoria: "Body", img: "body-corto-celeste.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Body manica corta profilo blu", categoria: "Body", img: "body-corto-blu.jpg", prezzo: 20, topTesto: "47%" },
+            { nome: "Bavetta", categoria: "Bavetta", img: "bavetta.jpg", prezzo: 10, topTesto: "60%" },
+            { nome: "Set lenzuolino", categoria: "Lenzuolini", img: "lenzuolino.jpg", prezzo: 20, topTesto: "47%" }
+        ];
+
+        // const colori = [
+        //     { nome: "Rosa cipria", valore: "#f6a7b8" },
+        //     { nome: "Celeste", valore: "#6ba9c8" },
+        //     { nome: "Salvia", valore: "#8bb8a8" },
+        //     { nome: "Lilla", valore: "#a995cf" },
+        //     { nome: "Bordeaux", valore: "#87384a" },
+        //     { nome: "Grigio", valore: "#555555" }
+        // ];
+
+        const colori=[
+
+            {gruppo:"Cielo dei sogni",nome:"Azzurro cielo",valore:"#a9cee2"},
+            {gruppo:"Cielo dei sogni",nome:"Blu cicladi",valore:"#6fc6ef"},
+            {gruppo:"Cielo dei sogni",nome:"Blu notte",valore:"#1c2f67"},
+            {gruppo:"Polvere di stelle",nome:"Argento perla",valore:"#b7b7b7"},
+            {gruppo:"Polvere di stelle",nome:"Cipria delicato",valore:"#f3d6cf"},
+            {gruppo:"Polvere di stelle",nome:"Champagne",valore:"#d8bf83"},
+            {gruppo:"Polvere di stelle",nome:"Caramello dorato",valore:"#8f572d"},
+            {gruppo:"Polvere di stelle",nome:"Orsetto metallizzato",valore:"#7f4850"},
+            {gruppo:"Giardino incantato",nome:"Verde sedano",valore:"#e8ebc8"},
+            {gruppo:"Giardino incantato",nome:"Verde menta",valore:"#89d8a1"},
+            {gruppo:"Giardino incantato",nome:"Verde dragoncello",valore:"#929546"},
+            {gruppo:"Giardino incantato",nome:"Verde petrolio",valore:"#5f827b"},
+            {gruppo:"Giardino incantato",nome:"Verde smeraldo",valore:"#13834a"},
+            {gruppo:"Raggi di sole",nome:"Chiaro di luna",valore:"#f8f0c8"},
+            {gruppo:"Raggi di sole",nome:"Crema di vaniglia",valore:"#fff0b8"},
+            {gruppo:"Raggi di sole",nome:"Giallo brillante",valore:"#ffd84a"},
+            {gruppo:"Raggi di sole",nome:"Pesca",valore:"#f48b83"},
+            {gruppo:"Raggi di sole",nome:"Mandarino",valore:"#f28721"},
+            {gruppo:"Raggi di sole",nome:"Arancione neon",valore:"#ff4b24"},
+            {gruppo:"Petali e fiabe",nome:"Rosa sakura",valore:"#f7bdd7"},
+            {gruppo:"Petali e fiabe",nome:"Lavanda bianca",valore:"#d9c5d8"},
+            {gruppo:"Petali e fiabe",nome:"Bocciolo di rosa",valore:"#f4a8cf"},
+            {gruppo:"Petali e fiabe",nome:"Glicine",valore:"#9b6d9c"},
+            {gruppo:"Petali e fiabe",nome:"Fragolina di bosco",valore:"#c90b55"},
+            {gruppo:"Petali e fiabe",nome:"Rosso scarlatto",valore:"#d71920"}
+
+        ];
+
+        const selectProdotto = document.getElementById("select-prodotto");
+        const selectModello = document.getElementById("select-modello");
+        const selectTestoTipo = document.getElementById("select-testo-tipo");
+        const selectFont = document.getElementById("select-font");
+        const inputSoggetto = document.getElementById("input-soggetto");
+        const inputSoggetto2 = document.getElementById("input-soggetto-2");
+        const inputNome = document.getElementById("input-nome");
+        const inputIniziali = document.getElementById("input-iniziali");
+        const fieldNome = document.getElementById("field-nome");
+        const fieldIniziali = document.getElementById("field-iniziali");
+        const fieldSoggetto2 = document.getElementById("field-soggetto-2");
+        const aggiungiSoggettoBtn = document.getElementById("aggiungi-soggetto-btn");
+        const note = document.getElementById("note");
+        const immaginiRiferimento = document.getElementById("immagini-riferimento");
+        const referencePreview = document.getElementById("reference-preview");
+        const imgVisualizzata = document.getElementById("prodotto-visualizzato");
+        const placeholderPreview = document.getElementById("placeholder-preview");
+        const ricamiAnteprima = document.getElementById("ricami-anteprima");
+        const prezzoBase = document.getElementById("prezzo-base");
+        const prezzoExtra = document.getElementById("prezzo-extra");
+        const prezzoTotale = document.getElementById("prezzo-totale");
+        const opzioneNome = document.getElementById("opzione-nome");
+        const opzioneIniziali = document.getElementById("opzione-iniziali");
+        const opzioneSoggetto = document.getElementById("opzione-soggetto");
+        const opzioneSoggetto2 = document.getElementById("opzione-soggetto-2");
+        const opzioneFedera = document.getElementById("opzione-federa");
+        const selectTaglia = document.getElementById("select-taglia");
+        const fieldTaglia = document.getElementById("field-taglia");
+        const fieldFedera = document.getElementById("field-federa");
+        const fieldFederaIniziali = document.getElementById("field-federa-iniziali");
+        const inputFederaIniziali = document.getElementById("input-federa-iniziali");
+        const fieldColletto = document.getElementById("field-colletto");
+        const collettoNome = document.getElementById("colletto-nome");
+        const collettoIniziali = document.getElementById("colletto-iniziali");
+        const collettoSoggetto = document.getElementById("colletto-soggetto");
+        const collettoSoggetto2 = document.getElementById("colletto-soggetto-2");
+        const fieldColore = document.getElementById("field-colore");
+        const colorInput = document.getElementById("color-picker-input");
+        const colorPicker = document.getElementById("color-picker");
+        const productPriceSummary = document.getElementById("product-price-summary");
+
+        // document.getElementById("open-color-picker").addEventListener("click", () => colorInput.click());
+
+        colorInput.addEventListener("input", () => {
+            coloreSelezionato = colorInput.value;
+            document
+            .querySelectorAll(".spolina")
+            .forEach(el => el.classList.remove("attiva"));
+                    aggiornaTutto();
+        });
+
+        // function selezionaColorePalette(valore) {
+        //     document.querySelectorAll(".color-option").forEach(el => el.classList.remove("selected"));
+        //     const index = colori.findIndex(c => c.valore.toLowerCase() === valore.toLowerCase());
+        //     if (index >= 0) {
+        //         document.querySelectorAll(".color-option")[index]?.classList.add("selected");
+        //     }
+        // }
+
+        function selezionaColorePalette(valore) {
+
+            document
+                .querySelectorAll(".spolina")
+                .forEach(el => el.classList.remove("attiva"));
+
+            document
+                .querySelectorAll(".spolina")
+                .forEach(el => {
+
+                    if (el.dataset.color.toLowerCase() === valore.toLowerCase()) {
+                        el.classList.add("attiva");
+                    }
+
+                });
+
+        }
+
+        // function creaPaletteColori() {
+        //     colori.forEach((c) => {
+        //         const wrapper = document.createElement("div");
+        //         wrapper.className = "color-option";
+        //         const svg = `<svg viewBox="0 0 40 40" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="${c.valore}"/><circle cx="20" cy="20" r="6" fill="#fff"/><rect x="12" y="4" width="16" height="5" rx="2" fill="#ffffff" opacity="0.6"/></svg>`;
+        //         wrapper.innerHTML = `<div class="color-swatch">${svg}</div><span>${c.nome}</span>`;
+
+        //         wrapper.addEventListener("click", () => {
+        //             coloreSelezionato = c.valore;
+        //             colorInput.value = c.valore;
+        //             selezionaColorePalette(c.valore);
+        //             ricamiAnteprima.style.transform = "scale(1.03)";
+        //             setTimeout(() => { ricamiAnteprima.style.transform = "scale(1)"; }, 120);
+        //             aggiornaTutto();
+        //         });
+
+        //         colorPicker.appendChild(wrapper);
+        //     });
+        //     selezionaColorePalette(coloreSelezionato);
+        // }
+
+        function creaPaletteColori() {
+
+            colorPicker.innerHTML = "";
+
+            let gruppoCorrente = "";
+
+            colori.forEach((c, index) => {
+
+                if (c.gruppo !== gruppoCorrente) {
+                    gruppoCorrente = c.gruppo;
+                    const titoloGruppo = document.createElement("div");
+                    titoloGruppo.className = "color-group-title";
+                    titoloGruppo.textContent = gruppoCorrente;
+                    colorPicker.appendChild(titoloGruppo);
+                }
+
+                const spolina = document.createElement("div");
+                spolina.className = "spolina";
+                spolina.dataset.color = c.valore;
+                spolina.title = c.nome;
+
+                spolina.innerHTML = `
+                <svg class="svg-spolina" viewBox="0 0 56 62" aria-hidden="true">
+                    <defs>
+                        <filter id="ruvido-filo-${index}" x="-10%" y="-10%" width="120%" height="120%">
+                            <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="2" seed="${index + 7}" result="noise"/>
+                            <feDisplacementMap in="SourceGraphic" in2="noise" scale=".45"/>
+                        </filter>
+                        <clipPath id="clip-filo-${index}">
+                            <path d="M18 17 C22 18, 33 18, 38 17 L36 45 C32 44, 24 44, 20 45 Z"/>
+                        </clipPath>
+                    </defs>
+
+                    <path d="M18 7 C23 8, 33 8, 38 7 L35 14 C31 13, 24 13, 21 14 Z"
+                        fill="#fff8f3" stroke="#8e665b" stroke-width=".9" stroke-linejoin="round"/>
+                    <path d="M21 14 C25 13, 31 13, 35 14 L36 45 C32 44, 24 44, 20 45 Z"
+                        fill="#fffdf9" stroke="#8e665b" stroke-width=".75" stroke-linejoin="round"/>
+
+                    <g clip-path="url(#clip-filo-${index})" fill="none" stroke-linecap="round" filter="url(#ruvido-filo-${index})">
+                        <path d="M16.8 18.2 C23.5 16.3, 31.8 18.9, 39.4 17.1" stroke="${c.valore}" stroke-width="1.05"/>
+                        <path d="M17.5 19.4 C24.2 17.9, 32.5 20.8, 38.7 18.8" stroke="${c.valore}" stroke-width=".85" opacity=".9"/>
+                        <path d="M16.9 20.7 C23.3 18.8, 33.6 21.6, 39.6 20.1" stroke="${c.valore}" stroke-width="1.15"/>
+                        <path d="M17.4 22.1 C24.8 20.4, 31.8 23.3, 39.1 21.5" stroke="${c.valore}" stroke-width=".9" opacity=".92"/>
+                        <path d="M16.7 23.3 C23.8 21.7, 33.2 24.5, 39.5 22.7" stroke="${c.valore}" stroke-width="1.2"/>
+                        <path d="M17.2 24.8 C24.6 23.1, 32.7 26.1, 39 24.1" stroke="${c.valore}" stroke-width=".82" opacity=".86"/>
+                        <path d="M16.8 26.1 C23.4 24.5, 33.4 27.4, 39.7 25.5" stroke="${c.valore}" stroke-width="1.18"/>
+                        <path d="M17.6 27.5 C24.8 25.9, 31.9 28.9, 39.2 26.8" stroke="${c.valore}" stroke-width=".86" opacity=".9"/>
+                        <path d="M16.8 28.8 C23.7 27.2, 33.1 30.3, 39.5 28.1" stroke="${c.valore}" stroke-width="1.22"/>
+                        <path d="M17.4 30.3 C24.4 28.6, 33.4 31.8, 38.9 29.5" stroke="${c.valore}" stroke-width=".84" opacity=".86"/>
+                        <path d="M16.9 31.6 C23.9 30.1, 32.2 33.2, 39.6 30.8" stroke="${c.valore}" stroke-width="1.2"/>
+                        <path d="M17.5 33 C24.8 31.4, 33.1 34.6, 39.1 32.3" stroke="${c.valore}" stroke-width=".88" opacity=".9"/>
+                        <path d="M16.9 34.4 C24.1 32.7, 32.8 36, 39.6 33.6" stroke="${c.valore}" stroke-width="1.16"/>
+                        <path d="M17.5 35.8 C24.5 34.1, 33.3 37.4, 39 35.1" stroke="${c.valore}" stroke-width=".84" opacity=".88"/>
+                        <path d="M17 37.2 C23.7 35.4, 32.7 38.8, 39.3 36.4" stroke="${c.valore}" stroke-width="1.15"/>
+                        <path d="M17.6 38.7 C24.3 36.8, 33 40.2, 38.8 37.9" stroke="${c.valore}" stroke-width=".82" opacity=".86"/>
+                        <path d="M17.4 40 C24.1 38.4, 32.3 41.4, 38.5 39.3" stroke="${c.valore}" stroke-width="1.04"/>
+                        <path d="M18.1 41.6 C24.2 39.8, 31.8 42.8, 37.8 40.8" stroke="${c.valore}" stroke-width=".8" opacity=".88"/>
+                        <path d="M19 20.2 C24.6 19.2, 31.3 21.1, 36.8 19.6" stroke="#fff" stroke-opacity=".15" stroke-width=".35"/>
+                        <path d="M19.2 27.3 C25.5 26.3, 31.4 28.2, 37.4 26.5" stroke="#fff" stroke-opacity=".12" stroke-width=".35"/>
+                        <path d="M18.9 35.3 C25.1 34.2, 31.8 36.4, 37.2 34.5" stroke="#fff" stroke-opacity=".13" stroke-width=".35"/>
+                        <path d="M19.4 39.7 C25.5 38.6, 31.5 40.9, 36.8 39" stroke="#5f4038" stroke-opacity=".16" stroke-width=".36"/>
+                        <path d="M20 23.8 L16.5 24.4" stroke="${c.valore}" stroke-opacity=".5" stroke-width=".5"/>
+                        <path d="M36.6 28.7 L40.8 27.8" stroke="${c.valore}" stroke-opacity=".46" stroke-width=".5"/>
+                        <path d="M19.3 36.5 L15.9 35.9" stroke="${c.valore}" stroke-opacity=".45" stroke-width=".45"/>
+                        <path d="M35.2 42.2 L39.2 42.9" stroke="${c.valore}" stroke-opacity=".42" stroke-width=".45"/>
+                    </g>
+
+                    <path d="M17 18 C23 16, 32 19, 39 17" fill="none" stroke="#8e665b" stroke-opacity=".32" stroke-width=".65"/>
+                    <path d="M20 45 C24 44, 32 44, 36 45 L39 53 C33 52, 23 52, 17 53 Z"
+                        fill="#fff8f3" stroke="#8e665b" stroke-width=".9" stroke-linejoin="round"/>
+
+                    <path d="M38 26 C47 23, 48 33, 41 34 C36 34, 37 27, 43 29"
+                        fill="none" stroke="${c.valore}" stroke-width="1.05" stroke-linecap="round"/>
+                    <path d="M18 31 C13 31, 12 26, 16 25"
+                        fill="none" stroke="${c.valore}" stroke-width=".85" stroke-linecap="round" opacity=".75"/>
+                    <path d="M24 11 C28 12, 32 12, 35 11"
+                        fill="none" stroke="#c9aaa0" stroke-width=".65" stroke-linecap="round"/>
+                </svg>
+
+                <span>${c.nome}</span>
+                `;
+
+                if (c.valore === coloreSelezionato)
+                    spolina.classList.add("attiva");
+
+                spolina.addEventListener("mouseenter", () => {
+
+                    colorInput.value = c.valore;
+                    aggiornaTutto();
+
+                });
+
+                spolina.addEventListener("mouseleave", () => {
+
+                    colorInput.value = coloreSelezionato;
+                    aggiornaTutto();
+
+                });
+
+                spolina.addEventListener("click", () => {
+
+                    coloreSelezionato = c.valore;
+                    colorInput.value = c.valore;
+
+                    document
+                        .querySelectorAll(".spolina")
+                        .forEach(s=>s.classList.remove("attiva"));
+
+                    spolina.classList.add("attiva");
+
+                    aggiornaTutto();
+
+                });
+
+                colorPicker.appendChild(spolina);
+
+            });
+
+        }
+
+        function caricaLogo(index = 0) {
+            const logo = document.getElementById("hero-logo");
+            const fallback = document.getElementById("logo-fallback");
+            if (!logo || index >= CONFIG.loghiPossibili.length) {
+                if (logo) logo.style.display = "none";
+                if (fallback) fallback.style.display = "grid";
+                return;
+            }
+            logo.onerror = () => caricaLogo(index + 1);
+            logo.onload = () => {
+                logo.style.display = "block";
+                if (fallback) fallback.style.display = "none";
+            };
+            logo.src = CONFIG.loghiPossibili[index];
+        }
+
+
+        function euro(valore) {
+            return new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(valore);
+        }
+
+        function aggiornaEtichettePrezzi() {
+            document.getElementById("label-opzione-nome").textContent = `Nome (+${euro(CONFIG.costiExtra.nome)})`;
+            document.getElementById("label-opzione-iniziali").textContent = `Iniziali (+${euro(CONFIG.costiExtra.iniziali)})`;
+            document.getElementById("label-opzione-soggetto").textContent = `Soggetto (+${euro(CONFIG.costiExtra.disegno)})`;
+            document.getElementById("label-opzione-federa").textContent = `Federa con iniziali (+${euro(CONFIG.costiExtra.federaIniziali)})`;
+        }
+
+        function getCollettoScelto(tipo) {
+            return document.querySelector(`input[name="colletto-${tipo}"]:checked`)?.value || "sx";
+        }
+
+        function getCollettoAttivo() {
+            if (prodottoCorrente()?.categoria !== "Body") return null;
+            const colletto = {};
+            if (opzioneNome.checked) colletto.nome = getCollettoScelto("nome");
+            if (opzioneIniziali.checked) colletto.iniziali = getCollettoScelto("iniziali");
+            if (opzioneSoggetto.checked) colletto.soggetto = getCollettoScelto("soggetto");
+            if (opzioneSoggetto2.checked) colletto.soggetto2 = getCollettoScelto("soggetto-2");
+            return Object.keys(colletto).length ? colletto : null;
+        }
+
+        function formatCollettoLabel(lato) {
+            return lato === "dx" ? "colletto destro" : "colletto sinistro";
+        }
+
+        function testoCollettoRiepilogo(colletto) {
+            if (!colletto) return "";
+            const righe = [];
+            if (colletto.nome) righe.push(`Nome: ${formatCollettoLabel(colletto.nome)}`);
+            if (colletto.iniziali) righe.push(`Iniziali: ${formatCollettoLabel(colletto.iniziali)}`);
+            if (colletto.soggetto) righe.push(`Soggetto: ${formatCollettoLabel(colletto.soggetto)}`);
+            if (colletto.soggetto2) righe.push(`Soggetto 2: ${formatCollettoLabel(colletto.soggetto2)}`);
+            return righe.length ? `\nPosizione colletto:\n${righe.join("\n")}` : "";
+        }
+
+        function testoCollettoBreve(colletto) {
+            if (!colletto) return "";
+            const righe = [];
+            if (colletto.nome) righe.push(`Nome → ${formatCollettoLabel(colletto.nome)}`);
+            if (colletto.iniziali) righe.push(`Iniziali → ${formatCollettoLabel(colletto.iniziali)}`);
+            if (colletto.soggetto) righe.push(`Soggetto → ${formatCollettoLabel(colletto.soggetto)}`);
+            if (colletto.soggetto2) righe.push(`Soggetto 2 -> ${formatCollettoLabel(colletto.soggetto2)}`);
+            return righe.join(" · ");
+        }
+
+        function resetColletto() {
+            ["nome", "iniziali", "soggetto", "soggetto-2"].forEach((tipo, index) => {
+                const lato = index === 3 ? "dx" : "sx";
+                const radio = document.querySelector(`input[name="colletto-${tipo}"][value="${lato}"]`);
+                if (radio) radio.checked = true;
+            });
+        }
+
+        function impostaColletto(colletto = {}) {
+            ["nome", "iniziali", "soggetto", "soggetto-2"].forEach((tipo) => {
+                const key = tipo === "soggetto-2" ? "soggetto2" : tipo;
+                const valore = colletto[key] || (tipo === "soggetto-2" ? "dx" : "sx");
+                const radio = document.querySelector(`input[name="colletto-${tipo}"][value="${valore}"]`);
+                if (radio) radio.checked = true;
+            });
+        }
+
+        function elementiAttivi() {
+            return [
+                { tipo: "nome", attivo: opzioneNome.checked },
+                { tipo: "iniziali", attivo: opzioneIniziali.checked },
+                { tipo: "soggetto", attivo: opzioneSoggetto.checked },
+                { tipo: "soggetto-2", attivo: opzioneSoggetto2.checked }
+            ].filter(item => item.attivo);
+        }
+
+const selectTesto = document.getElementById('select-testo-tipo');
+const selectSoggetto = document.getElementById('select-soggetto-tipo');
+const fieldSoggetto1 = document.getElementById('field-soggetto');
+let previousSelectTestoValue = selectTesto?.value || "";
+let previousSelectSoggettoValue = selectSoggetto?.value || "";
+let skipVerificaLimite = false;
+
+function hasNomeInizialiAttivo() {
+    return opzioneNome.checked || opzioneIniziali.checked;
+}
+
+function mostraPopupImpossibile3Elementi() {
+    alert("Non è possibile selezionare Nome/Iniziali e due soggetti insieme: puoi usare al massimo due elementi.");
+}
+
+function verificaLimiteTreElementi() {
+    if (skipVerificaLimite) {
+        skipVerificaLimite = false;
+        return;
+    }
+
+    const hasNomeIniziali = hasNomeInizialiAttivo();
+    if (!hasNomeIniziali) {
+        previousSelectTestoValue = selectTesto?.value || previousSelectTestoValue;
+        previousSelectSoggettoValue = selectSoggetto?.value || previousSelectSoggettoValue;
+        return;
+    }
+
+    let invalid = false;
+    if (selectSoggetto?.value === "due") {
+        mostraPopupImpossibile3Elementi();
+        selectSoggetto.value = previousSelectSoggettoValue || "uno";
+        invalid = true;
+    }
+    if (opzioneSoggetto2?.checked) {
+        if (!invalid) mostraPopupImpossibile3Elementi();
+        opzioneSoggetto2.checked = false;
+        invalid = true;
+    }
+
+    if (invalid) {
+        aggiornaSecondoSoggetto();
+        selectTesto.value = previousSelectTestoValue;
+        aggiornaCampiTesto();
+    } else {
+        previousSelectTestoValue = selectTesto?.value || previousSelectTestoValue;
+        previousSelectSoggettoValue = selectSoggetto?.value || previousSelectSoggettoValue;
+    }
+}
+
+function aggiornaRegoleSoggetto() {
+    // Non disabilitiamo l'opzione "due" per Nome/Iniziali: mostriamo un popup quando l'utente prova a selezionarla.
+}
+
+function aggiornaCampiTesto() {
+    const valore = selectTesto.value;
+
+    if (valore === "") {
+        fieldNome.style.display = "none";
+        fieldIniziali.style.display = "none";
+    } else if (valore === "nome") {
+        fieldNome.style.display = "block";
+        fieldIniziali.style.display = "none";
+    } else if (valore === "iniziali") {
+        fieldNome.style.display = "none";
+        fieldIniziali.style.display = "block";
+    }
+
+    if (opzioneNome) opzioneNome.checked = valore === "nome";
+    if (opzioneIniziali) opzioneIniziali.checked = valore === "iniziali";
+    aggiornaRegoleSoggetto();
+}
+
+selectTesto.addEventListener('change', (event) => {
+    const valore = selectTesto.value;
+    if ((valore === "nome" || valore === "iniziali") && selectSoggetto?.value === "due") {
+        mostraPopupImpossibile3Elementi();
+        selectTesto.value = previousSelectTestoValue;
+        skipVerificaLimite = true;
+        aggiornaCampiTesto();
+        aggiornaTutto();
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return;
+    }
+    previousSelectTestoValue = valore;
+    aggiornaCampiTesto();
+    aggiornaTutto();
+});
+
+function aggiornaTutto() {
+    aggiornaCampiTesto();
+    aggiornaSecondoSoggetto();
+    verificaLimiteTreElementi();
+    aggiornaVisibilitaTaglia();
+    aggiornaVisibilitaColletto();
+    aggiornaVisibilitaColore();
+    aggiornaAnteprima();
+    calcolaPrezzo();
+}
+
+// inizializzazione
+aggiornaCampiTesto();
+
+function aggiornaSecondoSoggetto() {
+    const valore = selectSoggetto?.value || "";
+    const mostraSecondo = valore === "due";
+
+    if (fieldSoggetto2) {
+        fieldSoggetto2.style.display = mostraSecondo ? "block" : "none";
+    }
+
+    if (opzioneSoggetto) opzioneSoggetto.checked = valore !== "";
+    if (opzioneSoggetto2) opzioneSoggetto2.checked = mostraSecondo;
+}
+
+function aggiornaCampiSoggetto() {
+    const valore = selectSoggetto.value;
+
+    const label1 = document.getElementById("label-soggetto-1");
+    const label2 = document.getElementById("label-soggetto-2");
+
+    if (valore === "") {
+        fieldSoggetto1.style.display = "none";
+        fieldSoggetto2.style.display = "none";
+    }
+    else if (valore === "uno") {
+        fieldSoggetto1.style.display = "block";
+        fieldSoggetto2.style.display = "none";
+
+        label1.textContent = "Soggetto";
+    }
+    else if (valore === "due") {
+        fieldSoggetto1.style.display = "block";
+        fieldSoggetto2.style.display = "block";
+
+        label1.textContent = "Soggetto 1";
+        label2.textContent = "Soggetto 2";
+    }
+
+    aggiornaRegoleSoggetto();
+    aggiornaSecondoSoggetto();
+    aggiornaTutto();
+}
+
+selectSoggetto.addEventListener('change', (event) => {
+    const valore = selectSoggetto.value;
+    if (valore === "due" && hasNomeInizialiAttivo()) {
+        mostraPopupImpossibile3Elementi();
+        selectSoggetto.value = previousSelectSoggettoValue;
+        skipVerificaLimite = true;
+        aggiornaCampiSoggetto();
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return;
+    }
+    previousSelectSoggettoValue = valore;
+    aggiornaCampiSoggetto();
+});
+
+[opzioneNome, opzioneIniziali].forEach((checkbox) => {
+    if (!checkbox) return;
+    checkbox.addEventListener('change', (event) => {
+        if (checkbox.checked && (selectSoggetto?.value === "due" || opzioneSoggetto2?.checked)) {
+            mostraPopupImpossibile3Elementi();
+            checkbox.checked = false;
+            skipVerificaLimite = true;
+            aggiornaTutto();
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return;
+        }
+        aggiornaTutto();
+    });
+});
+
+if (opzioneSoggetto2) {
+    opzioneSoggetto2.addEventListener('change', () => {
+        aggiornaTutto();
+    });
+}
+
+// inizializzazione
+aggiornaCampiSoggetto();
+
+
+        function assegnaPrimoLatoLibero(tipo) {
+            const usati = new Set(elementiAttivi()
+                .filter(item => item.tipo !== tipo)
+                .map(item => getCollettoScelto(item.tipo)));
+            const corrente = getCollettoScelto(tipo);
+            if (!usati.has(corrente)) return true;
+            const libero = ["sx", "dx"].find(lato => !usati.has(lato));
+            if (!libero) return false;
+            const radio = document.querySelector(`input[name="colletto-${tipo}"][value="${libero}"]`);
+            if (radio) radio.checked = true;
+            return true;
+        }
+
+        function sincronizzaCollettoOccupato() {
+            document.querySelectorAll('input[name^="colletto-"]').forEach((radio) => {
+                radio.disabled = false;
+                radio.closest("label")?.classList.remove("disabled");
+            });
+
+            if (prodottoCorrente()?.categoria !== "Body") return;
+
+            if (elementiAttivi().length > 2) {
+                opzioneSoggetto2.checked = false;
+                aggiornaSecondoSoggetto();
+            }
+
+            const attivi = elementiAttivi();
+            if (attivi.length === 2 && ultimoCollettoCamb) {
+                const ultimo = attivi.find(item => item.tipo === ultimoCollettoCamb) || attivi[0];
+                const altro = attivi.find(item => item.tipo !== ultimo.tipo);
+                if (altro) {
+                    const latoUltimo = getCollettoScelto(ultimo.tipo);
+                    const latoOpposto = latoUltimo === "sx" ? "dx" : "sx";
+                    const radioAltro = document.querySelector(`input[name="colletto-${altro.tipo}"][value="${latoOpposto}"]`);
+                    if (radioAltro) radioAltro.checked = true;
+                }
+            }
+
+            if (attivi.length === 2) {
+                return;
+            }
+
+            attivi.forEach(item => assegnaPrimoLatoLibero(item.tipo));
+
+            attivi.forEach(item => {
+                document.querySelectorAll(`input[name="colletto-${item.tipo}"]`).forEach((radio) => {
+                    const occupatoDaAltro = attivi.some(other => other.tipo !== item.tipo && getCollettoScelto(other.tipo) === radio.value);
+                    radio.disabled = occupatoDaAltro;
+                    radio.closest("label")?.classList.toggle("disabled", occupatoDaAltro);
+                });
+            });
+        }
+
+        function creaRicamoOverlay(testo, lato, isSoggetto, topCentro) {
+            const el = document.createElement("div");
+            el.className = `ricamo-overlay ricamo-overlay--${lato}${isSoggetto ? " soggetto" : ""}`;
+            el.textContent = testo;
+            el.style.color = coloreSelezionato;
+            el.style.fontFamily = `"${selectFont.value}", cursive`;
+            if (lato === "centro" && topCentro) {
+                el.style.top = topCentro;
+            }
+            return el;
+        }
+
+        function prodottoCorrente() {
+            return prodotti.find(p => p.nome === selectProdotto.value) || null;
+        }
+
+        function popolaProdotti() {
+            prodotti.forEach((prodotto) => {
+                const option = document.createElement("option");
+                option.value = prodotto.nome;
+                option.textContent = `${prodotto.nome} - da ${euro(prodotto.prezzo)}`;
+                selectProdotto.appendChild(option);
+            });
+            selectProdotto.value = "";
+            aggiornaTutto();
+        }
+
+        function resetOpzioniRicamo() {
+            selectTestoTipo.value = "";
+            opzioneNome.checked = false;
+            opzioneIniziali.checked = false;
+            opzioneSoggetto.checked = false;
+            opzioneSoggetto2.checked = false;
+            opzioneFedera.checked = false;
+            resetColletto();
+            aggiornaCampiTesto();
+            aggiornaSecondoSoggetto();
+        }
+
+        function aggiornaNomiCollettoSoggetto() {
+            const haDueSoggetti = opzioneSoggetto.checked && opzioneSoggetto2.checked;
+            if (haDueSoggetti) {
+                collettoSoggetto.querySelector("strong").textContent = "Soggetto 1";
+                collettoSoggetto2.querySelector("strong").textContent = "Soggetto 2";
+            } else {
+                collettoSoggetto.querySelector("strong").textContent = "Soggetto";
+                collettoSoggetto2.querySelector("strong").textContent = "Secondo soggetto";
+            }
+        }
+
+        function aggiornaVisibilitaColletto() {
+            const prodotto = prodottoCorrente();
+            const isBody = prodotto?.categoria === "Body";
+            fieldColletto.style.display = isBody ? "block" : "none";
+            collettoNome.style.display = isBody && opzioneNome.checked ? "flex" : "none";
+            collettoIniziali.style.display = isBody && opzioneIniziali.checked ? "flex" : "none";
+            collettoSoggetto.style.display = isBody && opzioneSoggetto.checked ? "flex" : "none";
+            collettoSoggetto2.style.display = isBody && opzioneSoggetto2.checked ? "flex" : "none";
+            aggiornaNomiCollettoSoggetto();
+            sincronizzaCollettoOccupato();
+        }
+
+        function aggiornaVisibilitaTaglia() {
+            const prodotto = prodottoCorrente();
+            if (!prodotto) {
+                fieldTaglia.style.display = "none";
+                fieldFedera.style.display = "none";
+                if (fieldFederaIniziali) fieldFederaIniziali.style.display = "none";
+                if (fieldColore) fieldColore.style.display = "none";
+                return;
+            }
+
+            if (prodotto.categoria === "Body") {
+                fieldTaglia.style.display = "block";
+            } else {
+                fieldTaglia.style.display = "none";
+                selectTaglia.value = "";
+            }
+
+            if (prodotto.categoria === "Lenzuolini") {
+                fieldFedera.style.display = "block";
+            } else {
+                fieldFedera.style.display = "none";
+                opzioneFedera.checked = false;
+            }
+
+            if (fieldFederaIniziali) {
+                fieldFederaIniziali.style.display = opzioneFedera.checked ? "block" : "none";
+            }
+
+            if (fieldColore) {
+                const valore = selectTestoTipo.value;
+                fieldColore.style.display = (valore === "nome" || valore === "iniziali") ? "block" : "none";
+            }
+        }
+
+        function popolaModelli() {
+            const grid = document.getElementById("models-grid");
+            prodotti.filter(p => p.img).forEach((prodotto) => {
+                const card = document.createElement("button");
+                card.type = "button";
+                card.className = "model-card";
+                card.innerHTML = `<img src="${prodotto.img}" alt="${prodotto.nome}"><span>${prodotto.nome}</span>`;
+                card.addEventListener("click", () => {
+                    selectProdotto.value = prodotto.nome;
+                    selectModello.value = "Modello Instagram";
+                    resetOpzioniRicamo();
+                    document.querySelectorAll(".model-card").forEach(item => item.classList.remove("selected"));
+                    card.classList.add("selected");
+                    aggiornaTutto();
+                    document.getElementById("configura").scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+                grid.appendChild(card);
+            });
+        }
+
+        function aggiornaAnteprima() {
+            const prodotto = prodottoCorrente();
+            ricamiAnteprima.innerHTML = "";
+
+            if (!prodotto) {
+                imgVisualizzata.style.display = "none";
+                placeholderPreview.style.display = "grid";
+                placeholderPreview.textContent = "Scegli un prodotto per vedere l'anteprima";
+                return;
+            }
+
+            const isBody = prodotto.categoria === "Body";
+            const elementi = [];
+            if (opzioneNome.checked) {
+                elementi.push({
+                    tipo: "nome",
+                    testo: inputNome.value.trim() || "Nome",
+                    lato: isBody ? getCollettoScelto("nome") : "centro"
+                });
+            }
+            if (opzioneIniziali.checked) {
+                elementi.push({
+                    tipo: "iniziali",
+                    testo: inputIniziali.value.trim() || "M.G.",
+                    lato: isBody ? getCollettoScelto("iniziali") : "centro"
+                });
+            }
+            if (opzioneSoggetto.checked) {
+                elementi.push({
+                    tipo: "soggetto",
+                    testo: inputSoggetto.value.trim() ? `✿ ${inputSoggetto.value.trim()}` : "✿",
+                    lato: isBody ? getCollettoScelto("soggetto") : "centro"
+                });
+            }
+            if (opzioneSoggetto2.checked) {
+                elementi.push({
+                    tipo: "soggetto-2",
+                    testo: inputSoggetto2.value.trim() ? `✿ ${inputSoggetto2.value.trim()}` : "✿",
+                    lato: isBody ? getCollettoScelto("soggetto-2") : "centro"
+                });
+            }
+
+            if (isBody) {
+                const perLato = { sx: [], dx: [] };
+                elementi.forEach((item) => perLato[item.lato].push(item));
+                ["sx", "dx"].forEach((lato) => {
+                    perLato[lato].forEach((item, index) => {
+                        const overlay = creaRicamoOverlay(item.testo, lato, item.tipo.startsWith("soggetto"));
+                        if (perLato[lato].length > 1) {
+                            overlay.style.top = `${19 + index * 8}%`;
+                        }
+                        ricamiAnteprima.appendChild(overlay);
+                    });
+                });
+            } else if (elementi.length > 0) {
+                const testo = elementi.map((item) => item.testo).join(" · ");
+                ricamiAnteprima.appendChild(creaRicamoOverlay(testo, "centro", false, prodotto.topTesto));
+            }
+
+            if (prodotto.img) {
+                imgVisualizzata.style.display = "block";
+                imgVisualizzata.src = prodotto.img;
+                placeholderPreview.style.display = "none";
+            } else {
+                imgVisualizzata.style.display = "none";
+                placeholderPreview.style.display = "grid";
+            }
+        }
+
+        function calcolaPrezzo() {
+            const prodotto = prodottoCorrente();
+            if (!prodotto) {
+                prezzoBase.textContent = euro(0);
+                prezzoExtra.textContent = euro(0);
+                prezzoTotale.textContent = euro(0);
+                document.getElementById("mobile-item-total").textContent = euro(0);
+                return { base: 0, extra: 0, itemPrice: 0, totale: 0 };
+            }
+
+            let extra = 0;
+            if (opzioneNome.checked) extra += CONFIG.costiExtra.nome;
+            if (opzioneIniziali.checked) extra += CONFIG.costiExtra.iniziali;
+            if (opzioneSoggetto.checked) extra += CONFIG.costiExtra.disegno;
+            if (opzioneSoggetto2.checked) extra += CONFIG.costiExtra.soggettiAggiuntivi;
+            if (opzioneFedera.checked) extra += CONFIG.costiExtra.federaIniziali;
+
+            const base = prodotto.prezzo;
+            const itemPrice = base + extra;
+            const totale = itemPrice + CONFIG.spedizione;
+
+            prezzoBase.textContent = euro(base);
+            prezzoExtra.textContent = euro(extra);
+            prezzoTotale.textContent = euro(totale);
+            if (productPriceSummary) {
+                productPriceSummary.textContent = `Prezzo parziale: ${euro(itemPrice)}`;
+                productPriceSummary.dataset.value = itemPrice;
+            }
+            document.getElementById("mobile-item-total").textContent = euro(itemPrice);
+
+            return { base, extra, itemPrice, totale };
+        }
+
+        function getConfigAttuale() {
+            const prodotto = prodottoCorrente();
+            const prezzoData = calcolaPrezzo();
+
+            if (!prodotto) {
+                return {
+                    prodotto: "",
+                    taglia: selectTaglia?.value || null,
+                    nome: inputNome.value,
+                    iniziali: inputIniziali.value,
+                    soggetto: inputSoggetto.value,
+                    soggetto2: inputSoggetto2.value,
+                    font: selectFont.value,
+                    colore: coloreSelezionato,
+                    note: note.value,
+                    opzioni: {
+                        nome: opzioneNome.checked,
+                        iniziali: opzioneIniziali.checked,
+                        soggetto: opzioneSoggetto.checked,
+                        soggetto2: opzioneSoggetto2.checked,
+                        federa: opzioneFedera.checked
+                    },
+                    federa: opzioneFedera.checked,
+                    federaIniziali: inputFederaIniziali.value.trim(),
+                    colletto: getCollettoAttivo(),
+                    prezzo: prezzoData.itemPrice,
+                    base: prezzoData.base,
+                    extra: prezzoData.extra
+                };
+            }
+
+            return {
+                prodotto: prodotto.nome,
+                taglia: selectTaglia?.value || null,
+                nome: inputNome.value,
+                iniziali: inputIniziali.value,
+                soggetto: inputSoggetto.value,
+                soggetto2: inputSoggetto2.value,
+                font: selectFont.value,
+                colore: coloreSelezionato,
+                note: note.value,
+                opzioni: {
+                    nome: opzioneNome.checked,
+                    iniziali: opzioneIniziali.checked,
+                    soggetto: opzioneSoggetto.checked,
+                    soggetto2: opzioneSoggetto2.checked,
+                    federa: opzioneFedera.checked
+                },
+                federa: opzioneFedera.checked,
+                federaIniziali: inputFederaIniziali.value.trim(),
+                colletto: getCollettoAttivo(),
+                prezzo: prezzoData.itemPrice,
+                base: prezzoData.base,
+                extra: prezzoData.extra
+            };
+        }
+
+        function gestisciCarrello() {
+            if (opzioneFedera.checked && !inputFederaIniziali.value.trim()) {
+                alert('Per la federa con iniziali, compila il campo "Iniziali per la federa".');
+                inputFederaIniziali.focus();
+                return;
+            }
+
+            const config = getConfigAttuale();
+            if (editingIndex !== null) {
+                carrello[editingIndex] = config;
+                editingIndex = null;
+            } else {
+                carrello.push(config);
+            }
+            aggiornaUICarrello();
+            resetForm();
+        }
+
+        function aggiornaBottoneEditing() {
+            const btn = document.getElementById("main-cart-btn");
+            const mobileBtn = document.getElementById("mobile-cart-btn");
+
+            if (editingIndex !== null) {
+                btn.textContent = "💾 Salva modifiche";
+                btn.style.background = "#f6a7b8";
+                if (mobileBtn) mobileBtn.textContent = "💾 Salva";
+            } else {
+                btn.textContent = "➕ Aggiungi al carrello";
+                btn.style.background = "#8bb8a8";
+                if (mobileBtn) mobileBtn.textContent = "➕ Aggiungi";
+            }
+        }
+
+        function descrizioneRicamoItem(item) {
+            return [
+                item.nome ? `Nome: ${item.nome}` : "",
+                item.iniziali ? `Iniziali: ${item.iniziali}` : "",
+                item.soggetto ? `Soggetto: ${item.soggetto}` : "",
+                item.soggetto2 ? `Soggetto 2: ${item.soggetto2}` : ""
+            ].filter(Boolean).join(" - ") || "Da definire";
+        }
+
+        function renderCarrello() {
+            const box = document.getElementById("cart-items");
+            const totalBox = document.getElementById("cart-total");
+
+	    const boxMobile = document.getElementById("cart-items-mobile");
+	    const totalMobile = document.getElementById("cart-total-mobile");
+
+            box.innerHTML = "";
+	    if (boxMobile) boxMobile.innerHTML = "";
+            let subtotale = 0;
+
+            carrello.forEach((item, i) => {
+                subtotale += item.prezzo;
+                const div = document.createElement("div");
+                div.style.cssText = "border:1px solid #ddd;padding:10px;margin-bottom:8px;border-radius:8px";
+                div.innerHTML = `
+                    <h4 style="margin:0 0 8px">${item.prodotto}</h4>
+                    <div>📏 ${item.taglia || "-"}</div>
+                    <div>🪡 ${descrizioneRicamoItem(item)}</div>
+                    ${item.federa ? "<div>🛏️ Federa con iniziali</div>" : ""}
+                    ${item.colletto ? `<div>👔 ${testoCollettoBreve(item.colletto)}</div>` : ""}
+                    <div>🎨 ${item.colore}</div>
+                    <div><b>${euro(item.prezzo)}</b></div>
+                    <div style="margin-top:8px;display:flex;gap:8px">
+                        <button type="button" onclick="iniziaModifica(${i})">✏️ Modifica</button>
+                        <button type="button" class="btn" style="background:#f6a7b8;color:white" onclick="rimuoviItem(${i})">🗑</button>
+                    </div>`;
+                box.appendChild(div);
+            });
+
+	    if (boxMobile) {
+    		boxMobile.innerHTML = "";
+
+    		carrello.forEach((item, i) => {
+        		const div = document.createElement("div");
+        		div.style.cssText = "border:1px solid #ddd;padding:10px;margin-bottom:8px;border-radius:8px";
+
+        		div.innerHTML = `
+            			<h4 style="margin:0 0 8px">${item.prodotto}</h4>
+            			<div>📏 ${item.taglia || "-"}</div>
+            			<div>🪡 ${descrizioneRicamoItem(item)}</div>
+            			${item.federa ? "<div>🛏️ Federa con iniziali</div>" : ""}
+            			${item.colletto ? `<div>👔 ${testoCollettoBreve(item.colletto)}</div>` : ""}
+            			<div>🎨 ${item.colore}</div>
+            			<div><b>${euro(item.prezzo)}</b></div>
+            			<div style="margin-top:8px;display:flex;gap:8px">
+                			<button type="button" onclick="iniziaModifica(${i})">✏️ Modifica</button>
+                			<button type="button" class="btn" style="background:#f6a7b8;color:white" onclick="rimuoviItem(${i})">🗑</button>
+            			</div>
+        		`;
+
+        		boxMobile.appendChild(div);
+    		});
+	    }
+
+            const totale = subtotale + (carrello.length ? CONFIG.spedizione : 0);
+            totalBox.textContent = euro(totale);
+            if (totalMobile) totalMobile.textContent = euro(totale);
+
+            if (carrello.length > 0) {
+                const riepilogo = document.createElement("div");
+                riepilogo.style.cssText = "margin-top:12px;padding:12px;border-top:1px solid #ddd;font-weight:600";
+                riepilogo.innerHTML = `
+                    <div>Subtotale: ${euro(subtotale)}</div>
+                    <div>Spedizione: ${euro(CONFIG.spedizione)}</div>
+                    <div style="margin-top:6px;font-size:18px">Totale: ${euro(totale)}</div>`;
+                box.appendChild(riepilogo);
+            }
+
+            localStorage.setItem("carrello", JSON.stringify(carrello));
+            aggiornaBottoneEditing();
+        }
+
+        function iniziaModifica(index) {
+            const item = carrello[index];
+            editingIndex = index;
+
+            selectProdotto.value = item.prodotto;
+            selectTaglia.value = item.taglia || "0";
+            inputNome.value = item.nome || "";
+            inputIniziali.value = item.iniziali || "";
+            inputSoggetto.value = item.soggetto || "";
+            inputSoggetto2.value = item.soggetto2 || "";
+            selectFont.value = item.font || "Pacifico";
+            note.value = item.note || "";
+
+            opzioneNome.checked = item.opzioni?.nome ?? false;
+            opzioneIniziali.checked = item.opzioni?.iniziali ?? false;
+            opzioneSoggetto.checked = item.opzioni?.soggetto ?? false;
+            opzioneSoggetto2.checked = item.opzioni?.soggetto2 ?? Boolean(item.soggetto2);
+            opzioneFedera.checked = item.opzioni?.federa ?? item.federa ?? false;
+            selectTestoTipo.value = opzioneNome.checked ? "nome" : (opzioneIniziali.checked ? "iniziali" : "");
+            aggiornaCampiTesto();
+            aggiornaSecondoSoggetto();
+            impostaColletto(item.colletto || {});
+
+            coloreSelezionato = item.colore || "#7f4850";
+            colorInput.value = coloreSelezionato;
+            selezionaColorePalette(coloreSelezionato);
+
+            aggiornaTutto();
+            aggiornaBottoneEditing();
+            document.getElementById("configura").scrollIntoView({ behavior: "smooth" });
+
+	    document.getElementById("carrello-mobile")?.classList.remove("open");
+	    document.getElementById("configura").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function rimuoviItem(index) {
+            carrello.splice(index, 1);
+            if (editingIndex === index) {
+                editingIndex = null;
+                resetForm();
+            } else if (editingIndex !== null && index < editingIndex) {
+                editingIndex--;
+            }
+            aggiornaUICarrello();
+        }
+
+        function aggiornaVisibilitaColore() {
+            const mostraColore = selectTesto.value === "nome" || selectTesto.value === "iniziali";
+            if (fieldColore) {
+                fieldColore.style.display = mostraColore ? "block" : "none";
+            }
+        }
+
+        function aggiornaTutto() {
+            aggiornaCampiTesto();
+            aggiornaSecondoSoggetto();
+            verificaLimiteTreElementi();
+            aggiornaVisibilitaTaglia();
+            aggiornaVisibilitaColletto();
+            aggiornaVisibilitaColore();
+            aggiornaAnteprima();
+            calcolaPrezzo();
+        }
+
+function aggiornaUICarrello() {
+    renderCarrello();
+
+    const totale = carrello.reduce((s, i) => s + i.prezzo, 0) +
+        (carrello.length ? CONFIG.spedizione : 0);
+
+    document.getElementById("cart-total").textContent = euro(totale);
+    document.getElementById("cart-total-mobile").textContent = euro(totale);
+    document.getElementById("mobile-total").textContent = euro(totale);
+}
+
+        function apriCheckout() {
+            if (carrello.length === 0) {
+                alert("Il carrello è vuoto");
+                return;
+            }
+            const subtotal = carrello.reduce((s, i) => s + i.prezzo, 0);
+            const totale = subtotal + CONFIG.spedizione;
+            const riepilogo = `🛒 CHECKOUT SOGNI E RICAMI
+
+${carrello.map((item, i) => `#${i + 1}
+Prodotto: ${item.prodotto}
+Taglia: ${item.taglia || "-"}
+Nome: ${item.nome || "-"}
+Iniziali: ${item.iniziali || "-"}
+Soggetto: ${item.soggetto || "-"}
+Soggetto 2: ${item.soggetto2 || "-"}
+Federa iniziali: ${item.federa ? "Sì" : "No"}${testoCollettoRiepilogo(item.colletto)}
+Colore: ${item.colore}
+Prezzo: ${euro(item.prezzo)}`).join("\n\n")}
+
+Totale articoli: ${euro(subtotal)}
+Spedizione: ${euro(CONFIG.spedizione)}
+Totale: ${euro(totale)}`;
+
+            window.open(`https://wa.me/${CONFIG.numeroWhatsApp}?text=${encodeURIComponent(riepilogo)}`, "_blank");
+        }
+
+        function aggiornaImmaginiRiferimento() {
+            const files = Array.from(immaginiRiferimento.files || []);
+            nomiImmaginiRiferimento = files.map(file => file.name);
+            referencePreview.innerHTML = "";
+            files.slice(0, 8).forEach((file) => {
+                const figure = document.createElement("figure");
+                const img = document.createElement("img");
+                const caption = document.createElement("figcaption");
+                img.src = URL.createObjectURL(file);
+                img.alt = `Riferimento ${file.name}`;
+                img.onload = () => URL.revokeObjectURL(img.src);
+                caption.textContent = file.name;
+                figure.append(img, caption);
+                referencePreview.appendChild(figure);
+            });
+        }
+
+        function resetForm() {
+            selectTestoTipo.value = "";
+            inputNome.value = "";
+            inputIniziali.value = "";
+            inputSoggetto.value = "";
+            inputSoggetto2.value = "";
+            inputFederaIniziali.value = "";
+            note.value = "";
+            opzioneNome.checked = false;
+            opzioneIniziali.checked = false;
+            opzioneSoggetto.checked = false;
+            opzioneSoggetto2.checked = false;
+            opzioneFedera.checked = false;
+            resetColletto();
+            aggiornaCampiTesto();
+            aggiornaSecondoSoggetto();
+            selectFont.value = "Pacifico";
+            coloreSelezionato = "#7f4850";
+            colorInput.value = coloreSelezionato;
+            selezionaColorePalette(coloreSelezionato);
+            immaginiRiferimento.value = "";
+            referencePreview.innerHTML = "";
+            nomiImmaginiRiferimento = [];
+            selectTaglia.value = "0";
+            editingIndex = null;
+            aggiornaTutto();
+            aggiornaBottoneEditing();
+        }
+
+        function riepilogoOrdine() {
+            const { totale } = calcolaPrezzo();
+            const elementi = [
+                opzioneNome.checked ? "nome" : "",
+                opzioneIniziali.checked ? "iniziali" : "",
+                opzioneSoggetto.checked ? "soggetto" : "",
+                opzioneSoggetto2.checked ? "secondo soggetto" : "",
+                opzioneFedera.checked ? "federa con iniziali" : ""
+            ].filter(Boolean).join(", ");
+
+            return `Ciao Sogni e Ricami!
+Vorrei informazioni per questo ricamo:
+
+Prodotto: ${selectProdotto.value}
+Partenza: ${selectModello.value}
+Taglia: ${selectTaglia.value || "-"}
+Elementi: ${elementi || "da definire"}
+Nome: ${inputNome.value.trim() || "-"}
+Iniziali: ${inputIniziali.value.trim() || "-"}
+Soggetto: ${inputSoggetto.value.trim() || "-"}
+Soggetto 2: ${inputSoggetto2.value.trim() || "-"}
+Federa iniziali: ${opzioneFedera.checked ? "Sì" : "No"}${inputFederaIniziali.value.trim() ? ` (${inputFederaIniziali.value.trim()})` : ""}${testoCollettoRiepilogo(getCollettoAttivo())}
+Stile: ${selectFont.options[selectFont.selectedIndex].textContent}
+Colore filato: ${coloreSelezionato}
+Spedizione: ${euro(CONFIG.spedizione)}
+Totale stimato: ${euro(totale)}
+Immagini di riferimento: ${nomiImmaginiRiferimento.length ? nomiImmaginiRiferimento.join(", ") + " (le invio qui in chat)" : "-"}
+Note: ${note.value.trim() || "-"}
+
+Vorrei confermare dettagli, tempi e pagamento tramite IBAN o link.`;
+        }
+
+        function inviaWhatsApp() {
+            window.open(`https://wa.me/${CONFIG.numeroWhatsApp}?text=${encodeURIComponent(riepilogoOrdine())}`, "_blank");
+        }
+
+        function apriInstagram() {
+            window.open(`https://www.instagram.com/${CONFIG.profiloInstagram}/`, "_blank");
+        }
+
+        if (aggiungiSoggettoBtn) {
+            aggiungiSoggettoBtn.addEventListener("click", () => {
+                if (!opzioneSoggetto.checked) {
+                    opzioneSoggetto.checked = true;
+                }
+                if (!opzioneSoggetto2.checked && prodottoCorrente()?.categoria === "Body" && elementiAttivi().length >= 2) {
+                    alert("Sul body puoi occupare al massimo due lati del colletto: destro e sinistro.");
+                    aggiornaTutto();
+                    return;
+                }
+                opzioneSoggetto2.checked = !opzioneSoggetto2.checked;
+                if (!opzioneSoggetto2.checked) inputSoggetto2.value = "";
+                aggiornaTutto();
+            });
+        }
+
+        document.querySelectorAll('input[name^="colletto-"]').forEach((radio) => {
+            const tipo = radio.name.replace("colletto-", "");
+            radio.addEventListener("change", () => {
+                ultimoCollettoCamb = tipo;
+                if (elementiAttivi().length === 2) {
+                    const attivi = elementiAttivi();
+                    const ultimo = attivi.find(item => item.tipo === tipo);
+                    const altro = attivi.find(item => item.tipo !== tipo);
+                    if (ultimo && altro) {
+                        const latoUltimo = getCollettoScelto(ultimo.tipo);
+                        const latoOpposto = latoUltimo === "sx" ? "dx" : "sx";
+                        const radioAltro = document.querySelector(`input[name="colletto-${altro.tipo}"][value="${latoOpposto}"]`);
+                        if (radioAltro) {
+                            radioAltro.checked = true;
+                        }
+                    }
+                }
+                aggiornaTutto();
+            });
+        });
+
+        [selectProdotto, selectModello, selectFont, selectTaglia, inputSoggetto, inputSoggetto2, inputNome, inputIniziali, note, opzioneNome, opzioneIniziali, opzioneSoggetto, opzioneSoggetto2, opzioneFedera]
+            .forEach(el => {
+                if (!el) return;
+                el.addEventListener("input", () => { if (!suppressAggiornaTutto) aggiornaTutto(); });
+                el.addEventListener("change", () => { if (!suppressAggiornaTutto) aggiornaTutto(); });
+            });
+        if (selectProdotto) {
+            selectProdotto.addEventListener("change", aggiornaTutto);
+        }
+
+        immaginiRiferimento.addEventListener("change", aggiornaImmaginiRiferimento);
+
+        try {
+            carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+        } catch {
+            carrello = [];
+        }
+
+if (!localStorage.getItem("carrello_version")) {
+    localStorage.removeItem("carrello");
+    localStorage.setItem("carrello_version", "1");
+}
+
+        caricaLogo();
+        aggiornaEtichettePrezzi();
+        popolaProdotti();
+        popolaModelli();
+        creaPaletteColori();
+        aggiornaUICarrello();
+        aggiornaTutto();
+    </script>
+</body>
+</html>
