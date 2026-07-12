@@ -2359,23 +2359,39 @@ function aggiornaUICarrello() {
             }
             const subtotal = carrello.reduce((s, i) => s + i.prezzo, 0);
             const totale = subtotal + CONFIG.spedizione;
-            const riepilogo = `🛒 CHECKOUT SOGNI E RICAMI
+            const riepilogo = `Ciao Sogni e Ricami! ✨🪡
+Vorrei confermare il mio ordine 💌
 
-${carrello.map((item, i) => `#${i + 1}
-Prodotto: ${item.prodotto}
-Taglia: ${item.taglia || "-"}
-Nome: ${item.nome || "-"}
-Iniziali: ${item.iniziali || "-"}
-Soggetto: ${item.soggetto || "-"}
-Soggetto 2: ${item.soggetto2 || "-"}
-Federa iniziali: ${item.federa ? "Sì" : "No"}${testoCollettoRiepilogo(item.colletto)}
-Colore: ${item.colore}
-Prezzo: ${euro(item.prezzo)}`).join("\n\n")}
+${carrello.map((item, i) => `━━━━━━━━━━━━━━
+🛍️ Articolo ${i + 1}
 
-Totale articoli: ${euro(subtotal)}
-Spedizione: ${euro(CONFIG.spedizione)}
-Totale: ${euro(totale)}`;
+👕 Prodotto: ${item.prodotto || "-"}
+🧵 Partenza: ${item.modello || "-"}
+📏 Taglia: ${item.taglia || "-"}
+🪡 Elementi: ${item.elementi || "da definire"}
+✨ Nome: ${item.nome || "-"}
+💫 Iniziali: ${item.iniziali || "-"}
+🧸 Soggetto: ${item.soggetto || "-"}
+🎀 Soggetto 2: ${item.soggetto2 || "-"}
+🛏️ Federa iniziali: ${item.federa ? "Sì" : "No"}${item.federaIniziali ? ` (${item.federaIniziali})` : ""}
+${item.colletto ? `👔 Colletto:\n   • Nome: ${item.colletto.nome || "-"}\n   • Soggetto: ${item.colletto.soggetto || "-"}` : ""}
+🎨 Stile: ${item.font || "-"}
+🧵 Colore filato: ${item.colore || "-"}
+💶 Prezzo: ${euro(item.prezzo)}
+`).join("\n")}
 
+━━━━━━━━━━━━━━
+💰 Totale articoli: ${euro(totaleArticoli)}
+🚚 Spedizione: ${euro(CONFIG.spedizione)}
+💶 Totale ordine: ${euro(totale)}
+
+📸 Immagini di riferimento: ${nomiImmaginiRiferimento.length
+    ? nomiImmaginiRiferimento.join(", ") + " (le invio qui in chat)"
+    : "-"}
+
+📝 Note: ${note.value.trim() || "-"}
+
+Vorrei confermare dettagli, tempi e pagamento. 💛`;
             const webProfileUrl = `https://www.instagram.com/${CONFIG.profiloInstagram}/`;
             const appProfileUrl = `instagram://user?username=${CONFIG.profiloInstagram}`;
 
