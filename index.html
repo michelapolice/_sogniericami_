@@ -1972,6 +1972,7 @@ aggiornaCampiSoggetto();
         function aggiornaAnteprima() {
             const prodotto = prodottoCorrente();
             ricamiAnteprima.innerHTML = "";
+			ricamiAnteprimaMobile.innerHTML = "";
 
             if (!prodotto) {
                 imgVisualizzata.style.display = "none";
@@ -2034,6 +2035,7 @@ aggiornaCampiSoggetto();
                             overlay.style.top = `${19 + index * 8}%`;
                         }
                         ricamiAnteprima.appendChild(overlay);
+						ricamiAnteprimaMobile.appendChild(overlay);
                     });
                 });
             } else if (elementi.length > 0) {
@@ -2044,6 +2046,7 @@ aggiornaCampiSoggetto();
                         ? getFontFamiliaPerTipo("iniziali")
                         : getFontFamiliaPerTipo("soggetto");
                 ricamiAnteprima.appendChild(creaRicamoOverlay(testo, "centro", false, prodotto.topTesto, font));
+				ricamiAnteprimaMobile.appendChild(creaRicamoOverlay(testo, "centro", false, prodotto.topTesto, font));
             }
 
             if (prodotto.img) {
