@@ -2135,6 +2135,7 @@ aggiornaCampiSoggetto();
 
             return {
                 prodotto: prodotto.nome,
+				modello: selectModello?.value || "-",
                 taglia: selectTaglia?.value || null,
                 nome: inputNome.value,
                 iniziali: inputIniziali.value,
@@ -2399,11 +2400,20 @@ ${note.value.trim() || "-"}
 Vorrei confermare dettagli, tempi e pagamento. 💛`;
 
     navigator.clipboard.writeText(riepilogo).then(() => {
-        alert("Riepilogo copiato! Ora si aprirà Instagram. Incolla il messaggio nella chat.");
-        window.open("https://www.instagram.com/direct/inbox/", "_blank");
-    }).catch(() => {
-        prompt("Copia il messaggio:", riepilogo);
-    });
+
+    alert("Riepilogo copiato! Ora si aprirà il profilo Instagram di Sogni e Ricami. Apri la chat e incolla il messaggio. 💛");
+
+    const profilo = "https://www.instagram.com/_sogniericami_/";
+
+    const app = document.createElement("a");
+    app.href = profilo;
+    app.target = "_blank";
+    app.rel = "noopener noreferrer";
+    app.click();
+
+}).catch(() => {
+    prompt("Copia il messaggio:", riepilogo);
+});
 }              
 
         function aggiornaImmaginiRiferimento() {
