@@ -2114,8 +2114,8 @@ aggiornaCampiSoggetto();
                     iniziali: inputIniziali.value,
                     soggetto: inputSoggetto.value,
                     soggetto2: inputSoggetto2.value,
-                    font: selectFont.value,
-                    colore: coloreSelezionato,
+                    font: selectFont?.selectedOptions[0]?.text || "-",
+                    colore: selectColore.selectedOptions[0].text,
                     note: note.value,
                     opzioni: {
                         nome: opzioneNome.checked,
@@ -2141,8 +2141,8 @@ aggiornaCampiSoggetto();
                 iniziali: inputIniziali.value,
                 soggetto: inputSoggetto.value,
                 soggetto2: inputSoggetto2.value,
-                font: selectFont.value,
-                colore: coloreSelezionato,
+                font: selectFont?.selectedOptions[0]?.text || "-",
+                colore: selectColore.selectedOptions[0].text,
                 note: note.value,
                 opzioni: {
                     nome: opzioneNome.checked,
