@@ -2108,6 +2108,7 @@ aggiornaCampiSoggetto();
             if (!prodotto) {
                 return {
                     prodotto: "",
+					modello: selectModello?.value || "-",
                     taglia: selectTaglia?.value || null,
                     nome: inputNome.value,
                     iniziali: inputIniziali.value,
@@ -2352,14 +2353,16 @@ function aggiornaUICarrello() {
     document.getElementById("mobile-total").textContent = euro(totale);
 }
 
-        function apriCheckout() {
-            if (carrello.length === 0) {
-                alert("Il carrello è vuoto");
-                return;
-            }
-            const subtotal = carrello.reduce((s, i) => s + i.prezzo, 0);
-            const totale = subtotal + CONFIG.spedizione;
-            const riepilogo = `Ciao Sogni e Ricami! ✨🪡
+              function apriCheckout() {
+    if (!carrello.length) {
+        alert("Il carrello è vuoto.");
+        return;
+    }
+
+    const totaleArticoli = carrello.reduce((s, p) => s + p.prezzo, 0);
+    const totale = totaleArticoli + CONFIG.spedizione;
+
+    const riepilogo = `Ciao Sogni e Ricami! ✨🪡
 Vorrei confermare il mio ordine 💌
 
 ${carrello.map((item, i) => `━━━━━━━━━━━━━━
@@ -2368,49 +2371,40 @@ ${carrello.map((item, i) => `━━━━━━━━━━━━━━
 👕 Prodotto: ${item.prodotto || "-"}
 🧵 Partenza: ${item.modello || "-"}
 📏 Taglia: ${item.taglia || "-"}
-🪡 Elementi: ${item.elementi || "da definire"}
 ✨ Nome: ${item.nome || "-"}
 💫 Iniziali: ${item.iniziali || "-"}
 🧸 Soggetto: ${item.soggetto || "-"}
 🎀 Soggetto 2: ${item.soggetto2 || "-"}
 🛏️ Federa iniziali: ${item.federa ? "Sì" : "No"}${item.federaIniziali ? ` (${item.federaIniziali})` : ""}
-${item.colletto ? `👔 Colletto:\n   • Nome: ${item.colletto.nome || "-"}\n   • Soggetto: ${item.colletto.soggetto || "-"}` : ""}
+
+${testoCollettoRiepilogo(item.colletto)}
+
 🎨 Stile: ${item.font || "-"}
 🧵 Colore filato: ${item.colore || "-"}
 💶 Prezzo: ${euro(item.prezzo)}
 `).join("\n")}
 
 ━━━━━━━━━━━━━━
+
+📸 Immagini di riferimento:
+${nomiImmaginiRiferimento.length ? nomiImmaginiRiferimento.join(", ") + " (le invio qui in chat)" : "-"}
+
+📝 Note:
+${note.value.trim() || "-"}
+
 💰 Totale articoli: ${euro(totaleArticoli)}
 🚚 Spedizione: ${euro(CONFIG.spedizione)}
 💶 Totale ordine: ${euro(totale)}
 
-📸 Immagini di riferimento: ${nomiImmaginiRiferimento.length
-    ? nomiImmaginiRiferimento.join(", ") + " (le invio qui in chat)"
-    : "-"}
-
-📝 Note: ${note.value.trim() || "-"}
-
 Vorrei confermare dettagli, tempi e pagamento. 💛`;
-            const webProfileUrl = `https://www.instagram.com/${CONFIG.profiloInstagram}/`;
-            const appProfileUrl = `instagram://user?username=${CONFIG.profiloInstagram}`;
 
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(riepilogo).catch(() => {});
-            }
-
-            alert("Il testo contenente l'ordine è stato copiato negli appunti. Incolla il messaggio in Direct a @_sogniericami_ per confermare l'ordine.");
-
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            if (isMobile) {
-                window.location.href = appProfileUrl;
-                setTimeout(() => {
-                    window.open(webProfileUrl, "_blank");
-                }, 1200);
-            } else {
-                window.open(webProfileUrl, "_blank");
-            }
-        }
+    navigator.clipboard.writeText(riepilogo).then(() => {
+        alert("Riepilogo copiato! Ora si aprirà Instagram. Incolla il messaggio nella chat.");
+        window.open("https://www.instagram.com/direct/inbox/", "_blank");
+    }).catch(() => {
+        prompt("Copia il messaggio:", riepilogo);
+    });
+}              
 
         function aggiornaImmaginiRiferimento() {
             const files = Array.from(immaginiRiferimento.files || []);
