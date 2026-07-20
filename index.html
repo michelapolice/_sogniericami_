@@ -1014,9 +1014,10 @@
     <label for="select-soggetto-tipo">Soggetto</label>
     <select id="select-soggetto-tipo">
         <option value="">Nessuno</option>
-        <option value="uno">1 soggetto (+10€)</option>
+        <option value="uno">1 soggetto (10€)</option>
+        <option value="due">2 soggetti (10€)</option>
     </select>
-    <p class="field-help" id="field-help-soggetto" style="display:none;">Il primo soggetto costa 10€, i successivi 2€ ciascuno.</p>
+    <p class="field-help" id="field-help-soggetto" style="display:none;">La prima selezione soggetti costa 10€; senza Nome/Iniziali puoi aggiungere altri 2 soggetti a 5€ ciascuno.</p>
 </div>
 
 <div class="field" id="field-soggetto" style="display:none;">
@@ -1215,7 +1216,7 @@
             numeroWhatsApp: "393274297447",
             profiloInstagram: "_sogniericami_",
             loghiPossibili: ["logo-scritta.png", "logo.jpeg", "logo.jpg", "logo.png"],
-            costiExtra: { nome: 10, iniziali: 5, disegno: 10, soggettiAggiuntivi: 2, federaIniziali: 8 },
+            costiExtra: { nome: 10, iniziali: 5, disegno: 10, soggettiAggiuntivi: 2, soggettiLenzuolo: 5, federaIniziali: 8 },
             spedizione: 9
         };
 
@@ -1724,6 +1725,17 @@ function aggiornaCampiSoggetto() {
     const prodotto = prodottoCorrente();
     const valore = selectSoggetto?.value || "";
 
+    const optionUno = selectSoggetto?.querySelector('option[value="uno"]');
+    const optionDue = selectSoggetto?.querySelector('option[value="due"]');
+
+    if (prodotto?.categoria === "Lenzuolini") {
+        if (optionUno) optionUno.textContent = "1 soggetto (10€)";
+        if (optionDue) optionDue.textContent = "2 soggetti (10€)";
+    } else {
+        if (optionUno) optionUno.textContent = "1 soggetto (+10€)";
+        if (optionDue) optionDue.textContent = "2 soggetti (+20€)";
+    }
+
     const label1 = document.getElementById("label-soggetto-1");
     const label2 = document.getElementById("label-soggetto-2");
 
@@ -1742,6 +1754,36 @@ function aggiornaCampiSoggetto() {
         if (selectSoggetto && selectSoggetto.value === "due") {
             selectSoggetto.value = "uno";
         }
+
+        aggiornaRegoleSoggetto();
+        aggiornaSecondoSoggetto();
+        return;
+    }
+
+    if (prodotto?.categoria === "Lenzuolini") {
+        if (fieldHelpSoggetto) {
+            fieldHelpSoggetto.style.display = "block";
+            fieldHelpSoggetto.textContent = "Scegli fino a due soggetti iniziali. Senza Nome/Iniziali puoi aggiungere altri 2 soggetti a 5€ ciascuno.";
+        }
+
+        if (valore === "") {
+            if (fieldSoggetto1) fieldSoggetto1.style.display = "none";
+            if (fieldSoggetto2) fieldSoggetto2.style.display = "none";
+        }
+        else if (valore === "uno") {
+            if (fieldSoggetto1) fieldSoggetto1.style.display = "block";
+            if (fieldSoggetto2) fieldSoggetto2.style.display = "none";
+            if (label1) label1.textContent = "Soggetto iniziale";
+        }
+        else if (valore === "due") {
+            if (fieldSoggetto1) fieldSoggetto1.style.display = "block";
+            if (fieldSoggetto2) fieldSoggetto2.style.display = "block";
+            if (label1) label1.textContent = "Soggetto iniziale 1";
+            if (label2) label2.textContent = "Soggetto iniziale 2";
+        }
+
+        if (opzioneSoggetto) opzioneSoggetto.checked = valore !== "";
+        if (opzioneSoggetto2) opzioneSoggetto2.checked = valore === "due";
 
         aggiornaRegoleSoggetto();
         aggiornaSecondoSoggetto();
@@ -1801,6 +1843,16 @@ function aggiornaCampiSoggetto() {
             return Number(haSoggettoSelezionato) + soggettiExtraCount;
         }
 
+        function getNumeroSoggettiLenzuolini() {
+            const soggettiCount = selectSoggetto?.value === "due" ? 2 : selectSoggetto?.value === "uno" ? 1 : 0;
+            return soggettiCount;
+        }
+
+        function getNumeroSoggettiExtraLenzuolini() {
+            if (!soggettiExtraList) return 0;
+            return soggettiExtraList.querySelectorAll('[data-soggetto-extra="true"]').length;
+        }
+
         function creaCampoSoggettoExtra(testo = "", placeholder = "Soggetto extra 1") {
             const wrapper = document.createElement("div");
             wrapper.style.cssText = "display:grid; grid-template-columns: 1fr auto; gap:8px; align-items:center;";
@@ -1839,15 +1891,24 @@ function aggiornaCampiSoggetto() {
 
         function aggiornaSoggettiExtra() {
             const prodotto = prodottoCorrente();
-            if (!prodotto || prodotto.categoria !== "Bavetta") {
+            const haNomeIniziali = hasNomeInizialiAttivo();
+
+            if (!prodotto || (prodotto.categoria !== "Bavetta" && prodotto.categoria !== "Lenzuolini")) {
                 if (fieldSoggettiExtra) fieldSoggettiExtra.style.display = "none";
                 return;
             }
 
-            const haPrimoSoggetto = selectSoggetto?.value === "uno" || Boolean(inputSoggetto?.value.trim());
-            if (fieldSoggettiExtra) fieldSoggettiExtra.style.display = haPrimoSoggetto ? "block" : "none";
+            const haPrimoSoggetto = selectSoggetto?.value === "uno" || selectSoggetto?.value === "due" || Boolean(inputSoggetto?.value.trim());
+            const mostraExtraSoggetti = prodotto.categoria === "Bavetta"
+                ? haPrimoSoggetto
+                : (haPrimoSoggetto && !haNomeIniziali);
+
+            if (fieldSoggettiExtra) fieldSoggettiExtra.style.display = mostraExtraSoggetti ? "block" : "none";
+
             if (aggiungiSoggettoBtn) {
-                aggiungiSoggettoBtn.textContent = "+ Aggiungi altro soggetto (+2€ ciascuno)";
+                aggiungiSoggettoBtn.textContent = prodotto.categoria === "Bavetta"
+                    ? "+ Aggiungi altro soggetto (+2€ ciascuno)"
+                    : "+ Aggiungi altri soggetti (+5€ ciascuno)";
             }
         }
         aggiornaTutto();
@@ -1950,6 +2011,10 @@ aggiornaCampiSoggetto();
 
         function prodottoCorrente() {
             return prodotti.find(p => p.nome === selectProdotto.value) || null;
+        }
+
+        function immagineProdottoPerNome(nome) {
+            return prodotti.find(p => p.nome === nome)?.img || "";
         }
 
         function popolaProdotti() {
@@ -2193,6 +2258,11 @@ aggiornaCampiSoggetto();
                     extra += CONFIG.costiExtra.disegno;
                     extra += Math.max(0, soggettiBavettaCount - 1) * CONFIG.costiExtra.soggettiAggiuntivi;
                 }
+            } else if (prodotto.categoria === "Lenzuolini") {
+                const haSoggettiBase = selectSoggetto?.value === "uno" || selectSoggetto?.value === "due";
+                const soggettiExtraCount = getNumeroSoggettiExtraLenzuolini();
+                if (haSoggettiBase) extra += CONFIG.costiExtra.disegno;
+                extra += soggettiExtraCount * CONFIG.costiExtra.soggettiLenzuolo;
             } else {
                 const soggettiCount = selectSoggetto?.value === "due" ? 2 : selectSoggetto?.value === "uno" ? 1 : 0;
                 extra += soggettiCount * CONFIG.costiExtra.disegno;
@@ -2326,11 +2396,75 @@ aggiornaCampiSoggetto();
                 ...(Array.isArray(item.soggettiExtra) ? item.soggettiExtra : [])
             ].filter(Boolean);
 
-            return [
-                item.nome ? `Nome: ${item.nome}` : "",
-                item.iniziali ? `Iniziali: ${item.iniziali}` : "",
-                ...soggetti.map((testo, index) => `Soggetto${soggetti.length > 1 ? ` ${index + 1}` : ""}: ${testo}`)
-            ].filter(Boolean).join(" - ") || "Da definire";
+            const dettagli = [];
+
+            if (item.nome) {
+                dettagli.push(`Nome: ${item.nome}`);
+            } else if (item.opzioni?.nome) {
+                dettagli.push("Nome: scelto");
+            }
+
+            if (item.iniziali) {
+                dettagli.push(`Iniziali: ${item.iniziali}`);
+            } else if (item.opzioni?.iniziali) {
+                dettagli.push("Iniziali: scelte");
+            }
+
+            if (item.categoria === "Bavetta") {
+                if (item.soggetto) {
+                    dettagli.push(`Soggetto principale: ${item.soggetto}`);
+                } else if (item.opzioni?.soggetto) {
+                    dettagli.push("Soggetto principale: scelto");
+                }
+
+                if (Array.isArray(item.soggettiExtra) && item.soggettiExtra.length) {
+                    dettagli.push(...item.soggettiExtra.map((testo, index) => `Soggetto extra ${index + 1}: ${testo}`));
+                }
+            } else {
+                if (soggetti.length) {
+                    dettagli.push(...soggetti.map((testo, index) => `Soggetto${soggetti.length > 1 ? ` ${index + 1}` : ""}: ${testo}`));
+                } else if (item.opzioni?.soggetto) {
+                    dettagli.push("Soggetto: scelto");
+                }
+            }
+
+            if (item.opzioni?.federa && item.categoria === "Lenzuolini") {
+                dettagli.push(`Federa con iniziali${item.federaIniziali ? ` (${item.federaIniziali})` : ""}`);
+            }
+
+            return dettagli.join(" - ") || "Personalizzazione scelta";
+        }
+
+        function rigaPersonalizzazione(item) {
+            const righe = [];
+
+            if (item.nome) righe.push(`<div>✨ Nome: ${item.nome}</div>`);
+            if (item.iniziali) righe.push(`<div>💫 Iniziali: ${item.iniziali}</div>`);
+            if (item.categoria === "Bavetta" && item.soggetto) {
+                righe.push(`<div>🧸 Soggetto principale: ${item.soggetto}</div>`);
+            } else if (item.soggetto) {
+                righe.push(`<div>🧸 Soggetto: ${item.soggetto}</div>`);
+            }
+            if (item.soggetto2) righe.push(`<div>🎀 Soggetto 2: ${item.soggetto2}</div>`);
+            if (Array.isArray(item.soggettiExtra) && item.soggettiExtra.length) {
+                item.soggettiExtra.forEach((testo, index) => {
+                    righe.push(`<div>🧶 Soggetto extra ${index + 1}: ${testo}</div>`);
+                });
+            }
+
+            if (righe.length) {
+                return `<div><strong>Personalizzazione:</strong>${righe.join("")}</div>`;
+            }
+
+            return `<div><strong>Personalizzazione:</strong> Personalizzazione scelta</div>`;
+        }
+
+        function rigaDettagliCarrello(item) {
+            const righe = dettagliConfermaArticolo(item)
+                .split("\n")
+                .filter(Boolean);
+
+            return righe.map(riga => `<div>${riga}</div>`).join("");
         }
 
         function rigaTaglia(item) {
@@ -2343,6 +2477,11 @@ aggiornaCampiSoggetto();
         function rigaFedera(item) {
             if (item.categoria !== "Lenzuolini" || !item.federa) return "";
             return `<div>🛏️ Federa con iniziali${item.federaIniziali ? ` (${item.federaIniziali})` : ""}</div>`;
+        }
+
+        function rigaNote(item) {
+            if (!item.note?.trim()) return "";
+            return `<div>📝 Note: ${item.note.trim()}</div>`;
         }
 
         function renderCarrello() {
@@ -2362,11 +2501,7 @@ aggiornaCampiSoggetto();
                 div.style.cssText = "border:1px solid #ddd;padding:10px;margin-bottom:8px;border-radius:8px";
                 div.innerHTML = `
                     <h4 style="margin:0 0 8px">${item.prodotto}</h4>
-                    ${rigaTaglia(item)}
-                    <div>🪡 ${descrizioneRicamoItem(item)}</div>
-                    ${rigaFedera(item)}
-                    ${item.colletto ? `<div>👔 ${testoCollettoBreve(item.colletto)}</div>` : ""}
-                    <div>🎨 ${item.colore}</div>
+                    ${rigaDettagliCarrello(item)}
                     <div><b>${euro(item.prezzo)}</b></div>
                     <div style="margin-top:8px;display:flex;gap:8px">
                         <button type="button" onclick="iniziaModifica(${i})">✏️ Modifica</button>
@@ -2384,13 +2519,7 @@ aggiornaCampiSoggetto();
 
         		div.innerHTML = `
             			<h4 style="margin:0 0 8px">${item.prodotto}</h4>
-            			${rigaTaglia(item)}
-            			<div>🪡 ${descrizioneRicamoItem(item)}</div>
-            			${rigaFedera(item)}
-            			${item.colletto ? `<div>👔 ${testoCollettoBreve(item.colletto)}</div>` : ""}
-            			<div>🎨 ${item.colore}</div>
-            			<div><b>${euro(item.prezzo)}</b></div>
-            			<div style="margin-top:8px;display:flex;gap:8px">
+    				${rigaDettagliCarrello(item)}
                 			<button type="button" onclick="iniziaModifica(${i})">✏️ Modifica</button>
                 			<button type="button" class="btn" style="background:#f6a7b8;color:white" onclick="rimuoviItem(${i})">🗑</button>
             			</div>
@@ -2506,6 +2635,43 @@ function aggiornaUICarrello() {
     document.getElementById("mobile-total").textContent = euro(totale);
 }
 
+        function dettagliConfermaArticolo(item) {
+            const categoria = item.categoria || "";
+            const righe = [];
+            const haTestoPersonalizzato = Boolean((item.nome || "").trim() || (item.iniziali || "").trim());
+
+            if (categoria === "Body") {
+                righe.push(`📏 Taglia: ${item.taglia || "-"}`);
+            }
+
+            if (item.nome) righe.push(`✨ Nome: ${item.nome}`);
+            if (item.iniziali) righe.push(`💫 Iniziali: ${item.iniziali}`);
+
+            if (categoria === "Bavetta") {
+                if (item.soggetto) righe.push(`🧸 Soggetto principale: ${item.soggetto}`);
+                if (Array.isArray(item.soggettiExtra) && item.soggettiExtra.length) {
+                    righe.push(`🧶 Soggetti extra: ${item.soggettiExtra.join(", ")}`);
+                }
+            } else {
+                if (item.soggetto) righe.push(`🧸 Soggetto: ${item.soggetto}`);
+                if (item.soggetto2) righe.push(`🎀 Soggetto 2: ${item.soggetto2}`);
+                if (Array.isArray(item.soggettiExtra) && item.soggettiExtra.length) {
+                    righe.push(`🧶 Soggetti extra: ${item.soggettiExtra.join(", ")}`);
+                }
+            }
+
+            if (categoria === "Lenzuolini") {
+                righe.push(`🛏️ Federa iniziali: ${item.federa ? "Sì" : "No"}${item.federaIniziali ? ` (${item.federaIniziali})` : ""}`);
+            }
+
+            if (item.colletto) righe.push(testoCollettoRiepilogo(item.colletto));
+            if (haTestoPersonalizzato && item.font) righe.push(`🎨 Stile: ${item.font}`);
+            if (haTestoPersonalizzato && item.colore) righe.push(`🧵 Colore filato: ${item.colore}`);
+            if (item.note?.trim()) righe.push(`📝 Note: ${item.note.trim()}`);
+
+            return righe.join("\n");
+        }
+
               function apriCheckout() {
     if (!carrello.length) {
         alert("Il carrello è vuoto.");
@@ -2524,17 +2690,7 @@ ${carrello.map((item, i) => `━━━━━━━━━━━━━━
 
 👕 Prodotto: ${item.prodotto || "-"}
 🧵 Partenza: ${item.modello || "-"}
-${item.categoria === "Body" ? `📏 Taglia: ${item.taglia || "-"}\n` : ""}
-✨ Nome: ${item.nome || "-"}
-💫 Iniziali: ${item.iniziali || "-"}
-🧸 Soggetto: ${item.soggetto || "-"}
-🎀 Soggetto 2: ${item.soggetto2 || "-"}
-${Array.isArray(item.soggettiExtra) && item.soggettiExtra.length ? `🧶 Soggetti extra: ${item.soggettiExtra.join(", ")}\n` : ""}
-${item.categoria === "Lenzuolini" ? `🛏️ Federa iniziali: ${item.federa ? "Sì" : "No"}${item.federaIniziali ? ` (${item.federaIniziali})` : ""}\n` : ""}
-${testoCollettoRiepilogo(item.colletto)}
-
-🎨 Stile: ${item.font || "-"}
-🧵 Colore filato: ${item.colore || "-"}
+${dettagliConfermaArticolo(item)}
 💶 Prezzo: ${euro(item.prezzo)}
 `).join("\n")}
 
@@ -2543,8 +2699,8 @@ ${testoCollettoRiepilogo(item.colletto)}
 📸 Immagini di riferimento:
 ${nomiImmaginiRiferimento.length ? nomiImmaginiRiferimento.join(", ") + " (le invio qui in chat)" : "-"}
 
-📝 Note:
-${note.value.trim() || "-"}
+📝 Note articolo:
+${carrello.map(item => item.note?.trim() || "-").join(" | ")}
 
 💰 Totale articoli: ${euro(totaleArticoli)}
 🚚 Spedizione: ${euro(CONFIG.spedizione)}${getMostraSpedizioneGratis(totaleArticoli) ? `
@@ -2671,6 +2827,15 @@ Vorrei confermare dettagli, tempi e pagamento 💛`;
         function aggiungiSoggettoExtraBavetta() {
             if (!soggettiExtraList) return;
 
+            const prodotto = prodottoCorrente();
+            const soggettiExtraCount = soggettiExtraList.querySelectorAll('[data-soggetto-extra="true"]').length;
+
+            if (prodotto?.categoria === "Lenzuolini" && soggettiExtraCount >= 2) {
+                alert("Per il lenzuolino puoi aggiungere al massimo 2 soggetti extra.");
+                aggiornaTutto();
+                return;
+            }
+
             const wrapper = creaCampoSoggettoExtra("", `Soggetto extra ${soggettiExtraList.children.length + 1}`);
             const input = wrapper.querySelector('[data-soggetto-extra="true"]');
             soggettiExtraList.appendChild(wrapper);
@@ -2683,7 +2848,7 @@ Vorrei confermare dettagli, tempi e pagamento 💛`;
             aggiungiSoggettoBtn.addEventListener("click", () => {
                 const prodotto = prodottoCorrente();
 
-                if (prodotto?.categoria === "Bavetta") {
+                if (prodotto?.categoria === "Bavetta" || prodotto?.categoria === "Lenzuolini") {
                     aggiungiSoggettoExtraBavetta();
                     return;
                 }
