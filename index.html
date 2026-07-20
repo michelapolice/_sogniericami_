@@ -2411,7 +2411,7 @@ aggiornaCampiSoggetto();
                 const spedizioneGratis = getMostraSpedizioneGratis(subtotale);
                 riepilogo.innerHTML = `
                     <div>Subtotale: ${euro(subtotale)}</div>
-                    <div>Spedizione: +${euro(CONFIG.spedizione)}</div>
+                    <div>Spedizione: ${euro(CONFIG.spedizione)}</div>
                     ${spedizioneGratis ? `<div>Spedizione gratuita: -${euro(CONFIG.spedizione)}</div>` : ""}
                     <div style="margin-top:6px;font-size:18px">Totale: ${euro(totale)}</div>`;
                 box.appendChild(riepilogo);
