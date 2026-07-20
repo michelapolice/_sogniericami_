@@ -1728,12 +1728,37 @@ function aggiornaCampiSoggetto() {
     const optionUno = selectSoggetto?.querySelector('option[value="uno"]');
     const optionDue = selectSoggetto?.querySelector('option[value="due"]');
 
-    if (prodotto?.categoria === "Lenzuolini") {
-        if (optionUno) optionUno.textContent = "1 soggetto (10€)";
-        if (optionDue) optionDue.textContent = "2 soggetti (10€)";
-    } else {
+    if (prodotto?.categoria === "Bavetta") {
         if (optionUno) optionUno.textContent = "1 soggetto (+10€)";
-        if (optionDue) optionDue.textContent = "2 soggetti (+20€)";
+        if (optionDue) {
+            optionDue.style.display = "none";
+            optionDue.disabled = true;
+        }
+        if (selectSoggetto && selectSoggetto.value === "due") {
+            selectSoggetto.value = "uno";
+        }
+    } else if (prodotto?.categoria === "Lenzuolini") {
+        if (optionUno) {
+            optionUno.textContent = "1 soggetto (+10€)";
+            optionUno.style.display = "block";
+            optionUno.disabled = false;
+        }
+        if (optionDue) {
+            optionDue.textContent = "2 soggetti (+10€)";
+            optionDue.style.display = "block";
+            optionDue.disabled = false;
+        }
+    } else {
+        if (optionUno) {
+            optionUno.textContent = "1 soggetto (+10€)";
+            optionUno.style.display = "block";
+            optionUno.disabled = false;
+        }
+        if (optionDue) {
+            optionDue.textContent = "2 soggetti (+20€)";
+            optionDue.style.display = "block";
+            optionDue.disabled = false;
+        }
     }
 
     const label1 = document.getElementById("label-soggetto-1");
