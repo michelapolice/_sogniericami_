@@ -2547,7 +2547,7 @@ ${nomiImmaginiRiferimento.length ? nomiImmaginiRiferimento.join(", ") + " (le in
 ${note.value.trim() || "-"}
 
 💰 Totale articoli: ${euro(totaleArticoli)}
-🚚 Spedizione: ${euro(CONFIG.spedizione)}${getMostraSpedizioneGratis(totaleArticoli) ? `
+🚚 Spedizione: +${euro(CONFIG.spedizione)}${getMostraSpedizioneGratis(totaleArticoli) ? `
 🎁 Spedizione gratuita: -${euro(CONFIG.spedizione)}` : ""}
 💶 Totale ordine: ${euro(totale)}
 
@@ -2651,7 +2651,7 @@ ${stili || "✨ Nome: -\n💫 Iniziali: -"}
 🎀 Soggetto 2: ${inputSoggetto2.value.trim() || "-"}
 ${informazioniArticolo}${testoCollettoRiepilogo(getCollettoAttivo())}
 🎨 Colore filato: ${coloreSelezionato}
-🚚 Spedizione: ${euro(CONFIG.spedizione)}${getMostraSpedizioneGratis(totale) ? `
+🚚 Spedizione: +${euro(CONFIG.spedizione)}${getMostraSpedizioneGratis(totale) ? `
 🎁 Spedizione gratuita: -${euro(CONFIG.spedizione)}` : ""}
 💶 Totale stimato: ${euro(totale)}
 📸 Immagini di riferimento: ${nomiImmaginiRiferimento.length ? nomiImmaginiRiferimento.join(", ") + " (le invio qui in chat)" : "-"}
