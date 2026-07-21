@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZNT4MJE7CH"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-	
-	  gtag('config', 'G-ZNT4MJE7CH');
-	</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sogni e Ricami - Personalizza il tuo ricamo</title>
@@ -109,6 +99,74 @@
             margin: 0 0 28px;
             max-width: 560px;
         }
+
+ .shipping-banner{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#fffdfb;
+    border:1px solid #eadfd7;
+    border-left:5px solid #8bb8a8;
+    border-right:5px solid #8bb8a8;
+    border-radius:14px;
+    padding:12px 18px;
+    margin:0 auto 24px;
+    width:fit-content;
+    max-width:100%;
+}
+
+.shipping-subtitle{
+    font-size:15px;
+    color:#5f5656;
+    text-align:center;
+    line-height:1.4;
+}
+
+.shipping-subtitle strong:first-of-type{
+    color:#352d2d;
+}
+
+.shipping-subtitle strong:last-of-type{
+    color:#8bb8a8;
+}
+
+@media (max-width:620px){
+
+    .shipping-banner{
+        width:100%;
+        padding:12px;
+    }
+
+    .shipping-subtitle{
+        font-size:14px;
+    }
+
+}
+
+@keyframes camion{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-3px);
+    }
+
+}
+
+@keyframes shine{
+
+    0%,100%{
+        box-shadow:0 8px 20px rgba(0,0,0,.08);
+    }
+
+    50%{
+        box-shadow:0 8px 28px rgba(242,211,106,.6);
+    }
+
+}
+
 
         .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -884,6 +942,18 @@
             <img class="hero-logo" id="hero-logo" src="logo-scritta.png" alt="Logo Sogni e Ricami">
             <div class="logo-fallback" id="logo-fallback" aria-hidden="true"><span>Sogni<br>e Ricami</span></div>
             <p>🪡🧵 Ogni ricamo è fatto a mano con amore, pazienza e filati di alta qualità. Scegli e personalizza il soggetto perfetto per il corredino dei tuoi piccoli o per un regalo indimenticabile! 🧸✨</p>
+            <div class="shipping-banner">
+
+    <div class="shipping-text">
+
+        <div class="shipping-subtitle">
+            🚚 <strong>SPEDIZIONE GRATUITA</strong> per ordini superiori a <strong>59,00€</strong> in tutta Italia
+        </div>
+
+    </div>
+
+</div>
+            
             <div class="hero-actions">
                 <a class="btn btn-primary" href="#configura">Configura il tuo ricamo</a>
                 <a class="btn btn-secondary" href="#modelli">Guarda i modelli</a>
@@ -901,7 +971,7 @@
                         <span class="pill">Body personalizzati</span>
                         <span class="pill">Bavette ricamate</span>
                         <span class="pill">Set lenzuolini</span>
-                        <span class="pill">Ordini via WhatsApp o Instagram</span>
+                        <span class="pill">Ordini via Instagram</span>
                     </div>
                 </div>
                 <div class="steps">
@@ -951,6 +1021,8 @@
                             </select>
                         </div>
 
+                        <h3 class="section-mobile">🪡 Personalizza</h3>
+
                         <div class="field">
                             <label for="select-modello">Partenza</label>
                             <select id="select-modello">
@@ -972,8 +1044,6 @@
                                 <option value="36">36 mesi</option>
                             </select>
                         </div>
-
-                        <h3 class="section-mobile">🪡 Personalizza</h3>
 
                         <div class="field full">
                             <label>Elementi da ricamare</label>
@@ -1736,13 +1806,13 @@ function aggiornaCampiSoggetto() {
     const valore = selectSoggetto?.value || "";
 
     const optionUno = selectSoggetto?.querySelector('option[value="uno"]');
-    const optionDue = selectSoggetto?.querySelector('option[value="due"]');
+    let optionDue = selectSoggetto?.querySelector('option[value="due"]');
 
     if (prodotto?.categoria === "Bavetta") {
         if (optionUno) optionUno.textContent = "1 soggetto (+10€)";
         if (optionDue) {
-            optionDue.style.display = "none";
-            optionDue.disabled = true;
+            optionDue.remove();
+            optionDue = null;
         }
         if (selectSoggetto && selectSoggetto.value === "due") {
             selectSoggetto.value = "uno";
@@ -1750,24 +1820,26 @@ function aggiornaCampiSoggetto() {
     } else if (prodotto?.categoria === "Lenzuolini") {
         if (optionUno) {
             optionUno.textContent = "1 soggetto (+10€)";
-            optionUno.style.display = "block";
-            optionUno.disabled = false;
+        }
+        if (!optionDue) {
+            optionDue = document.createElement('option');
+            optionDue.value = "due";
+            selectSoggetto.appendChild(optionDue);
         }
         if (optionDue) {
             optionDue.textContent = "2 soggetti (+10€)";
-            optionDue.style.display = "block";
-            optionDue.disabled = false;
         }
     } else {
         if (optionUno) {
             optionUno.textContent = "1 soggetto (+10€)";
-            optionUno.style.display = "block";
-            optionUno.disabled = false;
+        }
+        if (!optionDue) {
+            optionDue = document.createElement('option');
+            optionDue.value = "due";
+            selectSoggetto.appendChild(optionDue);
         }
         if (optionDue) {
             optionDue.textContent = "2 soggetti (+20€)";
-            optionDue.style.display = "block";
-            optionDue.disabled = false;
         }
     }
 
