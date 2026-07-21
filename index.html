@@ -2480,6 +2480,11 @@ aggiornaCampiSoggetto();
             }
             aggiornaUICarrello();
             resetForm();
+            
+            // Reset prodotto selezionato e scroll alla sezione di configurazione
+            selectProdotto.value = "";
+            aggiornaTutto();
+            document.getElementById("modelli").scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function aggiornaBottoneEditing() {
